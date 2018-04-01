@@ -7,10 +7,10 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 char *strCapitalise(const char *sourceString)
 {
     char *destinationString = malloc(strlen(sourceString));
-
+    strcpy(destinationString, sourceString);
     //Upper case the first character
     destinationString[0] = toupper(sourceString[0]);
-    
+/*
     //Copy the remaining characters
     int i = 1;
 
@@ -21,7 +21,7 @@ char *strCapitalise(const char *sourceString)
 
     //Copy the terminating NULL character
     destinationString[i] = sourceString[i];
-
+*/
     return destinationString;
 }
 
