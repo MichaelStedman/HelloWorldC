@@ -7,52 +7,39 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 char *strCapitalise(const char *sourceString)
 {
     char *destinationString = malloc(strlen(sourceString));
+
     strcpy(destinationString, sourceString);
+
     //Upper case the first character
     destinationString[0] = toupper(sourceString[0]);
-/*
-    //Copy the remaining characters
-    int i = 1;
+
+    return destinationString;
+}
+
+char *strChangeCase(const char *sourceString, bool upper)
+{
+    char *destinationString = malloc(strlen(sourceString));
+    int i = 0;
 
     while (sourceString[i]) {
-        destinationString[i] = sourceString[i];
+        destinationString[i] =
+            upper ? toupper(sourceString[i]) : tolower(sourceString[i]);
         i++;
     }
 
     //Copy the terminating NULL character
     destinationString[i] = sourceString[i];
-*/
     return destinationString;
 }
 
 char *strLowerCase(const char *sourceString)
 {
-    char *destinationString = malloc(strlen(sourceString));
-    int i = 0;
-
-    while (sourceString[i]) {
-        destinationString[i] = tolower(sourceString[i]);
-        i++;
-    }
-
-    //Copy the terminating NULL character
-    destinationString[i] = sourceString[i];
-    return destinationString;
+    return strChangeCase(sourceString, false);
 }
 
 char *strUpperCase(const char *sourceString)
 {
-    char *destinationString = malloc(strlen(sourceString));
-    int i = 0;
-
-    while (sourceString[i]) {
-        destinationString[i] = toupper(sourceString[i]);
-        i++;
-    }
-
-    //Copy the terminating NULL character
-    destinationString[i] = sourceString[i];
-    return destinationString;
+    return strChangeCase(sourceString, true);
 }
 
 int strIndex(const char *sourceString, int searchCharacter, int occurrence)
