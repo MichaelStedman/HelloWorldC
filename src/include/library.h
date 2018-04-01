@@ -3,4 +3,12 @@ This Source Code Form is subject to the terms of the Mozilla Public
 License, v. 2.0. If a copy of the MPL was not distributed with this
 file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
-int functionToBeTested(int value);
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <ctype.h>
+
+int strIndex(const char *sourceString, int searchCharacter, int occurrence);
+char *strUpperCase(const char *sourceString);
+char *strLowerCase(const char *sourceString);
+char *strCapitalise(const char *sourceString);

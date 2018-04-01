@@ -14,41 +14,143 @@ int tests_failed = 0;
 
 int foo = 7;
 int bar = 5;
-
-static char *test_functionToBeTested()
+static char *test_strCapitalise()
 {
-    int value = 35;
-    int actual = functionToBeTested(35);
-    int expected = 45;
+    //Arrange
+    char sourceString[] = "mike";
+    char expected[] = "Mike";
 
+    //Act
+    char *actual = strCapitalise(sourceString);
+
+    //Assert
+    char *str3 = malloc(80);
+    sprintf(str3, "Expected %s Actual %s", expected, actual);
+
+    Assert_AreEqual(expected[0], actual[0], str3);
+
+    free(str3);
+    str3 = NULL;
+    free(actual);
+    actual = NULL;
+
+    return 0;
+}
+
+static char *test_strLower()
+{
+    //Arrange
+    char sourceString[] = "MIKE";
+    char expected[] = "mike";
+
+    //Act
+    char *actual = strLowerCase(sourceString);
+
+    //Assert
+    char *str3 = malloc(80);
+    sprintf(str3, "Expected %s Actual %s", expected, actual);
+
+    Assert_AreEqual(expected[0], actual[0], str3);
+
+    free(str3);
+    str3 = NULL;
+    free(actual);
+    actual = NULL;
+
+    return 0;
+}
+
+static char *test_strUpper()
+{
+    //Arrange
+    char sourceString[] = "mike";
+    char expected[] = "MIKE";
+
+    //Act
+    char *actual = strUpperCase(sourceString);
+
+    //Assert
+    char *str3 = malloc(80);
+    sprintf(str3, "Expected %s Actual %s", expected, actual);
+
+    Assert_AreEqual(expected[0], actual[0], str3);
+
+    free(str3);
+    str3 = NULL;
+    free(actual);
+    actual = NULL;
+
+    return 0;
+}
+
+static char *test_strIndex()
+{
+    //Arrange
+    char sourceString[] = "abcdefg";
+    char searchCharacter = 'd';
+    int expected = 3;
+
+    //Act
+    int actual = strIndex(sourceString, searchCharacter, 1);
+
+    //Assert
     char *str3 = malloc(80);
     sprintf(str3, "Expected %d Actual %d", expected, actual);
 
     Assert_AreEqual(expected, actual, str3);
 
     free(str3);
-
     return 0;
 }
 
-static char *test_foo()
+static char *test_strIndex_FindSecondOccurrence()
 {
-    Assert_AreEqual(7, foo, "error, foo != 7");
+    //Arrange
+    char sourceString[] = "abcdefgabcdefg";
+    char searchCharacter = 'd';
+    int expected = 10;
+
+    //Act
+    int actual = strIndex(sourceString, searchCharacter, 2);
+
+    //Assert
+    char *str3 = malloc(80);
+    sprintf(str3, "Expected %d Actual %d", expected, actual);
+
+    Assert_AreEqual(expected, actual, str3);
+
+    free(str3);
     return 0;
 }
 
-static char *test_bar()
+static char *test_strIndex_MissingOccurrence()
 {
-    char *str = "error, bar != 5";
-    Assert_AreEqual(5, bar, str);
+    //Arrange
+    char sourceString[] = "abcdefgabcdefg";
+    char searchCharacter = 'd';
+    int expected = -1;
+
+    //Act
+    int actual = strIndex(sourceString, searchCharacter, 99);
+
+    //Assert
+    char *str3 = malloc(80);
+    sprintf(str3, "Expected %d Actual %d", expected, actual);
+
+    Assert_AreEqual(expected, actual, str3);
+
+    free(str3);
     return 0;
 }
 
 static char *all_tests()
 {
-    mu_run_test(test_foo);
-    mu_run_test(test_bar);
-    mu_run_test(test_functionToBeTested);
+    mu_run_test(test_strCapitalise);
+    mu_run_test(test_strLower);
+    mu_run_test(test_strUpper);
+    mu_run_test(test_strIndex);
+    mu_run_test(test_strIndex_FindSecondOccurrence);
+    mu_run_test(test_strIndex_MissingOccurrence);
     return 0;
 }
 
