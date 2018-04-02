@@ -4,9 +4,48 @@ License, v. 2.0. If a copy of the MPL was not distributed with this
 file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 #include "include/library.h"
+char *strConcat(int num, ...)
+{
+    int totalLength = 0;
+    va_list arg;
+    int done;
+
+
+    // How long will the final string be?
+    // Iterate over the arguments and sum their lengths
+    va_start(arg, num);
+    for (int i = 0; i < num; i++) {
+        char *ptr = va_arg(arg, char *);
+        totalLength += strlen(ptr);
+    }
+    va_end(arg);
+
+    // Allocate enough room for the result string plus the terminating NULL
+    char *result = malloc(totalLength + 1);
+    assert(result);
+
+    // Copy each source string into the result string
+    va_start(arg, num);
+    for (int i = 0; i < num; i++) {
+        char *ptr = va_arg(arg, char *);
+        strncat(result, ptr, strlen(ptr));
+    }
+    va_end(arg);
+    return result;
+}
+
+bool strStartsWith(const char *sourceString, const char *searchString)
+{
+    return strncmp(sourceString, searchString,
+                   strlen(searchString)) == 0 ? true : false;
+}
+
 char *strCapitalise(const char *sourceString)
 {
+    assert(sourceString);
+
     char *destinationString = malloc(strlen(sourceString));
+    assert(destinationString);
 
     strcpy(destinationString, sourceString);
 
@@ -18,7 +57,11 @@ char *strCapitalise(const char *sourceString)
 
 char *strChangeCase(const char *sourceString, bool upper)
 {
+    assert(sourceString);
+
     char *destinationString = malloc(strlen(sourceString));
+    assert(destinationString);
+
     int i = 0;
 
     while (sourceString[i]) {
@@ -34,16 +77,22 @@ char *strChangeCase(const char *sourceString, bool upper)
 
 char *strLowerCase(const char *sourceString)
 {
+    assert(sourceString);
+
     return strChangeCase(sourceString, false);
 }
 
 char *strUpperCase(const char *sourceString)
 {
+    assert(sourceString);
+
     return strChangeCase(sourceString, true);
 }
 
 int strIndex(const char *sourceString, int searchCharacter, int occurrence)
 {
+    assert(sourceString);
+
     int count = 0;
     int offset = 0;
     while (1) {

@@ -8,9 +8,14 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #include <stdlib.h>
 #include <ctype.h>
 #include <stdbool.h>
+#include <assert.h>
+#include <stdarg.h>
 
-int strIndex(const char *sourceString, int searchCharacter, int occurrence);
+char *strConcat(int num, ...);
+bool strStartsWith(const char *sourceString, const char *searchString);
 char *strChangeCase(const char *sourceString, bool upper);
 char *strUpperCase(const char *sourceString);
 char *strLowerCase(const char *sourceString);
 char *strCapitalise(const char *sourceString);
+int strIndex(const char *sourceString, int searchCharacter,
+             int occurrence);
