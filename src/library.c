@@ -4,6 +4,60 @@ License, v. 2.0. If a copy of the MPL was not distributed with this
 file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 #include "include/library.h"
+char *strMid(const char *sourceString, int start, int length)
+{
+    assert(sourceString);
+    assert(start >= 0);
+    assert(start < strlen(sourceString));
+    assert(length > 0);
+
+    //Create a buffer big enough for the string plus terminating NULL
+    char *result = malloc(length + 1);
+    assert(result);
+
+    //Do the copy from the middle of the sourceString
+    strncpy(result, sourceString + start, length);
+
+    //Add the terminating NULL character
+    result[length] = '\0';
+    return result;
+}
+
+char *strRight(const char *sourceString, int length)
+{
+    assert(sourceString);
+    assert(length > 0);
+
+    //Create a buffer big enough for the string plus terminating NULL
+    char *result = malloc(length + 1);
+    assert(result);
+
+    //Do the copy from the end of the sourceString
+    strncpy(result,
+            sourceString + (strlen(sourceString) - length), length);
+
+    //Add the terminating NULL character
+    result[length] = '\0';
+    return result;
+}
+
+char *strLeft(const char *sourceString, int length)
+{
+    assert(sourceString);
+    assert(length > 0);
+
+    //Create a buffer big enough for the string plus terminating NULL
+    char *result = malloc(length + 1);
+    assert(result);
+
+    //Do the copy from the front of the sourceString
+    strncpy(result, sourceString, length);
+
+    //Add the terminating NULL character
+    result[length] = '\0';
+    return result;
+}
+
 char *strConcat(int num, ...)
 {
     int totalLength = 0;
