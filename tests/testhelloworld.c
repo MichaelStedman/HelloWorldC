@@ -11,7 +11,95 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 int tests_run = 0;
 int tests_failed = 0;
-static char *test_strMid(){
+static char *test_strRStrip()
+{
+    //Arrange
+    char sourceString[] = "Michael****";
+    char expected[] = "Michael";
+
+    //Act
+    char *actual = strRStrip(sourceString, '*');
+
+    //Assert
+    char *str = malloc(80);
+    sprintf(str, "Expected |%s| Actual |%s|", expected, actual);
+
+    Assert_AreEqual(expected[0], actual[0], str);
+
+    free(str);
+    str = NULL;
+    free(actual);
+    actual = NULL;
+    return 0;
+}
+
+static char *test_strLStrip()
+{
+    //Arrange
+    char sourceString[] = "****Michael";
+    char expected[] = "Michael";
+
+    //Act
+    char *actual = strLStrip(sourceString, '*');
+
+    //Assert
+    char *str = malloc(80);
+    sprintf(str, "Expected |%s| Actual |%s|", expected, actual);
+
+    Assert_AreEqual(expected[0], actual[0], str);
+
+    free(str);
+    str = NULL;
+    free(actual);
+    actual = NULL;
+    return 0;
+}
+
+static char *test_strLTrim()
+{
+    //Arrange
+    char sourceString[] = "   Michael";
+    char expected[] = "Michael";
+
+    //Act
+    char *actual = strLTrim(sourceString);
+
+    //Assert
+    char *str = malloc(80);
+    sprintf(str, "Expected |%s| Actual |%s|", expected, actual);
+
+    Assert_AreEqual(expected[0], actual[0], str);
+
+    free(str);
+    str = NULL;
+    free(actual);
+    actual = NULL;
+    return 0;
+}
+static char *test_strRTrim()
+{
+    //Arrange
+    char sourceString[] = "Michael   ";
+    char expected[] = "Michael";
+
+    //Act
+    char *actual = strRTrim(sourceString);
+
+    //Assert
+    char *str = malloc(80);
+    sprintf(str, "Expected |%s| Actual |%s|", expected, actual);
+
+    Assert_AreEqual(expected[0], actual[0], str);
+
+    free(str);
+    str = NULL;
+    free(actual);
+    actual = NULL;
+    return 0;
+}
+
+static char *test_strMid()
+{
     //Arrange
     char sourceString[] = "Michael";
     char expected[] = "cha";
@@ -30,10 +118,10 @@ static char *test_strMid(){
     free(actual);
     actual = NULL;
     return 0;
-    
 }
 
-static char *test_strRight(){
+static char *test_strRight()
+{
     //Arrange
     char sourceString[] = "Michael";
     char expected[] = "ael";
@@ -52,9 +140,11 @@ static char *test_strRight(){
     free(actual);
     actual = NULL;
     return 0;
-    
+
 }
-static char *test_strLeft(){
+
+static char *test_strLeft()
+{
     //Arrange
     char sourceString[] = "Michael";
     char expected[] = "Mic";
@@ -73,8 +163,9 @@ static char *test_strLeft(){
     free(actual);
     actual = NULL;
     return 0;
-    
+
 }
+
 static char *test_strConcat()
 {
     //Arrange
@@ -86,7 +177,8 @@ static char *test_strConcat()
     char expected[] = "Michael Henry Stedman";
 
     //Act
-    char *actual = strConcat(5, stringA, stringB, stringC, stringD, stringE);
+    char *actual =
+        strConcat(5, stringA, stringB, stringC, stringD, stringE);
 
     //Assert
     char *str = malloc(80);
@@ -276,6 +368,10 @@ static char *test_strIndex_MissingOccurrence()
 
 static char *all_tests()
 {
+    mu_run_test(test_strRStrip);
+    mu_run_test(test_strLStrip);
+    mu_run_test(test_strLTrim);
+    mu_run_test(test_strRTrim);
     mu_run_test(test_strMid);
     mu_run_test(test_strRight);
     mu_run_test(test_strLeft);

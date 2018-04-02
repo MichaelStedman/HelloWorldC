@@ -4,6 +4,62 @@ License, v. 2.0. If a copy of the MPL was not distributed with this
 file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 #include "include/library.h"
+char *strRStrip(const char *sourceString, char padChar)
+{
+    assert(sourceString);
+
+    //Find the last non padding character by working 
+    //backwards from the end of the sourceString
+    int length = strlen(sourceString);
+    while (length > 0 && sourceString[length] == padChar) {
+        length--;
+    }
+
+    //Create a buffer big enough for the sourceString 
+    //without the trailing padding characters plus the terminating NULL
+    char *result = malloc(length + 1);
+
+    //Do the copy from the middle of the sourceString
+    strncpy(result, sourceString, length);
+
+    //Add the terminating NULL character
+    result[length] = '\0';
+    return result;
+}
+
+char *strLTrim(const char *sourceString)
+{
+    return strLStrip(sourceString, ' ');
+}
+char *strRTrim(const char *sourceString)
+{
+    return strRStrip(sourceString, ' ');
+}
+
+char *strLStrip(const char *sourceString, char padChar)
+{
+    assert(sourceString);
+
+    //Find the first non padding character by working
+    //forwards from the start of the sourceString
+    int start = 0;
+    while (start < strlen(sourceString) && sourceString[start] == padChar) {
+        start++;
+    }
+
+    //Create a buffer big enough for the sourceString
+    //without the leading padding characters plus the terminating NULL
+    int length = strlen(sourceString) - start;
+    char *result = malloc(length + 1);
+
+    //Do the copy from the middle of the sourceString
+    strncpy(result, sourceString + start, length);
+
+    //Add the terminating NULL character
+    result[length] = '\0';
+    return result;
+}
+
 char *strMid(const char *sourceString, int start, int length)
 {
     assert(sourceString);
@@ -11,6 +67,7 @@ char *strMid(const char *sourceString, int start, int length)
     assert(start < strlen(sourceString));
     assert(length > 0);
 
+    //TODO check that length doesn't make buffer TOO big based on length of sourceString
     //Create a buffer big enough for the string plus terminating NULL
     char *result = malloc(length + 1);
     assert(result);
@@ -28,6 +85,7 @@ char *strRight(const char *sourceString, int length)
     assert(sourceString);
     assert(length > 0);
 
+    //TODO check that length doesn't make buffer TOO big based on length of sourceString
     //Create a buffer big enough for the string plus terminating NULL
     char *result = malloc(length + 1);
     assert(result);
@@ -45,7 +103,7 @@ char *strLeft(const char *sourceString, int length)
 {
     assert(sourceString);
     assert(length > 0);
-
+    //TODO check that length doesn't make buffer TOO big based on length of sourceString
     //Create a buffer big enough for the string plus terminating NULL
     char *result = malloc(length + 1);
     assert(result);
@@ -64,15 +122,13 @@ char *strConcat(int num, ...)
     va_list arg;
     int done;
 
-
     // How long will the final string be?
     // Iterate over the arguments and sum their lengths
     va_start(arg, num);
     for (int i = 0; i < num; i++) {
         char *ptr = va_arg(arg, char *);
         totalLength += strlen(ptr);
-    }
-    va_end(arg);
+    } va_end(arg);
 
     // Allocate enough room for the result string plus the terminating NULL
     char *result = malloc(totalLength + 1);
@@ -123,7 +179,6 @@ char *strChangeCase(const char *sourceString, bool upper)
             upper ? toupper(sourceString[i]) : tolower(sourceString[i]);
         i++;
     }
-
     //Copy the terminating NULL character
     destinationString[i] = sourceString[i];
     return destinationString;

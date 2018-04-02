@@ -11,14 +11,22 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #include <assert.h>
 #include <stdarg.h>
 
+char *strLeft(const char *sourceString, int length);
 char *strMid(const char *sourceString, int start, int length);
 char *strRight(const char *sourceString, int length);
-char *strLeft(const char *sourceString, int length);
+
+char *strLStrip(const char *sourceString, char padChar);
+char *strRStrip(const char *sourceString, char padChar);
+char *strLTrim(const char *sourceString);
+char *strRTrim(const char *sourceString);
+
 char *strConcat(int num, ...);
-bool strStartsWith(const char *sourceString, const char *searchString);
+
 char *strChangeCase(const char *sourceString, bool upper);
 char *strUpperCase(const char *sourceString);
 char *strLowerCase(const char *sourceString);
 char *strCapitalise(const char *sourceString);
+
+bool strStartsWith(const char *sourceString, const char *searchString);
 int strIndex(const char *sourceString, int searchCharacter,
              int occurrence);
