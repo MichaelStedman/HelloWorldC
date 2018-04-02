@@ -11,9 +11,140 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 int tests_run = 0;
 int tests_failed = 0;
+static char *test_strMid(){
+    //Arrange
+    char sourceString[] = "Michael";
+    char expected[] = "cha";
 
-int foo = 7;
-int bar = 5;
+    //Act
+    char *actual = strMid(sourceString, 2, 3);
+
+    //Assert
+    char *str = malloc(80);
+    sprintf(str, "Expected |%s| Actual |%s|", expected, actual);
+
+    Assert_AreEqual(expected[0], actual[0], str);
+
+    free(str);
+    str = NULL;
+    free(actual);
+    actual = NULL;
+    return 0;
+    
+}
+
+static char *test_strRight(){
+    //Arrange
+    char sourceString[] = "Michael";
+    char expected[] = "ael";
+
+    //Act
+    char *actual = strRight(sourceString, 3);
+
+    //Assert
+    char *str = malloc(80);
+    sprintf(str, "Expected |%s| Actual |%s|", expected, actual);
+
+    Assert_AreEqual(expected[0], actual[0], str);
+
+    free(str);
+    str = NULL;
+    free(actual);
+    actual = NULL;
+    return 0;
+    
+}
+static char *test_strLeft(){
+    //Arrange
+    char sourceString[] = "Michael";
+    char expected[] = "Mic";
+
+    //Act
+    char *actual = strLeft(sourceString, 3);
+
+    //Assert
+    char *str = malloc(80);
+    sprintf(str, "Expected |%s| Actual |%s|", expected, actual);
+
+    Assert_AreEqual(expected[0], actual[0], str);
+
+    free(str);
+    str = NULL;
+    free(actual);
+    actual = NULL;
+    return 0;
+    
+}
+static char *test_strConcat()
+{
+    //Arrange
+    char stringA[] = "Michael";
+    char stringB[] = " ";
+    char stringC[] = "Henry";
+    char stringD[] = " ";
+    char stringE[] = "Stedman";
+    char expected[] = "Michael Henry Stedman";
+
+    //Act
+    char *actual = strConcat(5, stringA, stringB, stringC, stringD, stringE);
+
+    //Assert
+    char *str = malloc(80);
+    sprintf(str, "Expected |%s| Actual |%s|", expected, actual);
+
+    Assert_AreEqual(expected[0], actual[0], str);
+
+    free(str);
+    str = NULL;
+    free(actual);
+    actual = NULL;
+    return 0;
+}
+
+static char *test_strStartsWith_NotFound()
+{
+    //Arrange
+    char sourceString[] = "Mike";
+    char searchString[] = "xx";
+    bool expected = false;
+
+    //Act
+    bool actual = strStartsWith(sourceString, searchString);
+
+    //Assert
+    char *str = malloc(80);
+    sprintf(str, "Expected %d Actual %d", expected, actual);
+
+    Assert_AreEqual(expected, actual, str);
+
+    free(str);
+    str = NULL;
+
+    return 0;
+}
+
+static char *test_strStartsWith_Found()
+{
+    //Arrange
+    char sourceString[] = "Mike";
+    char searchString[] = "Mi";
+    bool expected = true;
+
+    //Act
+    bool actual = strStartsWith(sourceString, searchString);
+
+    //Assert
+    char *str = malloc(80);
+    sprintf(str, "Expected %d Actual %d", expected, actual);
+
+    Assert_AreEqual(expected, actual, str);
+
+    free(str);
+    str = NULL;
+
+    return 0;
+}
+
 static char *test_strCapitalise()
 {
     //Arrange
@@ -145,6 +276,12 @@ static char *test_strIndex_MissingOccurrence()
 
 static char *all_tests()
 {
+    mu_run_test(test_strMid);
+    mu_run_test(test_strRight);
+    mu_run_test(test_strLeft);
+    mu_run_test(test_strConcat);
+    mu_run_test(test_strStartsWith_NotFound);
+    mu_run_test(test_strStartsWith_Found);
     mu_run_test(test_strCapitalise);
     mu_run_test(test_strLower);
     mu_run_test(test_strUpper);
