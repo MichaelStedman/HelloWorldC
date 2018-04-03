@@ -11,10 +11,37 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 int tests_run = 0;
 int tests_failed = 0;
+char *tests_current;
+
+static char *test_strStrip()
+{
+    //Arrange
+    char sourceString[] = "***Michael***Henry****Stedman*****";
+    char expected[] = "Michael*Henry*Stedman";
+
+    //Act
+    char *actual = strStrip(sourceString, '*');
+
+    //Assert
+    char *str = malloc(80);
+    sprintf(str, "Expected |%s| Actual |%s|", expected, actual);
+    Assert_AreEqual(expected[0], actual[0], str);
+
+    sprintf(str, "Expected |%d| Actual |%d|", (int) strlen(expected),
+            (int) strlen(actual));
+    Assert_AreEqual(strlen(expected), strlen(actual), str);
+
+    free(str);
+    str = NULL;
+    free(actual);
+    actual = NULL;
+    return 0;
+}
+
 static char *test_strRStrip()
 {
     //Arrange
-    char sourceString[] = "Michael****";
+    char sourceString[] = "Michael********";
     char expected[] = "Michael";
 
     //Act
@@ -23,8 +50,11 @@ static char *test_strRStrip()
     //Assert
     char *str = malloc(80);
     sprintf(str, "Expected |%s| Actual |%s|", expected, actual);
-
     Assert_AreEqual(expected[0], actual[0], str);
+
+    sprintf(str, "Expected |%d| Actual |%d|", (int) strlen(expected),
+            (int) strlen(actual));
+    Assert_AreEqual(strlen(expected), strlen(actual), str);
 
     free(str);
     str = NULL;
@@ -45,8 +75,11 @@ static char *test_strLStrip()
     //Assert
     char *str = malloc(80);
     sprintf(str, "Expected |%s| Actual |%s|", expected, actual);
-
     Assert_AreEqual(expected[0], actual[0], str);
+
+    sprintf(str, "Expected |%d| Actual |%d|", (int) strlen(expected),
+            (int) strlen(actual));
+    Assert_AreEqual(strlen(expected), strlen(actual), str);
 
     free(str);
     str = NULL;
@@ -67,8 +100,11 @@ static char *test_strLTrim()
     //Assert
     char *str = malloc(80);
     sprintf(str, "Expected |%s| Actual |%s|", expected, actual);
-
     Assert_AreEqual(expected[0], actual[0], str);
+
+    sprintf(str, "Expected |%d| Actual |%d|", (int) strlen(expected),
+            (int) strlen(actual));
+    Assert_AreEqual(strlen(expected), strlen(actual), str);
 
     free(str);
     str = NULL;
@@ -76,6 +112,7 @@ static char *test_strLTrim()
     actual = NULL;
     return 0;
 }
+
 static char *test_strRTrim()
 {
     //Arrange
@@ -88,8 +125,11 @@ static char *test_strRTrim()
     //Assert
     char *str = malloc(80);
     sprintf(str, "Expected |%s| Actual |%s|", expected, actual);
-
     Assert_AreEqual(expected[0], actual[0], str);
+
+    sprintf(str, "Expected |%d| Actual |%d|", (int) strlen(expected),
+            (int) strlen(actual));
+    Assert_AreEqual(strlen(expected), strlen(actual), str);
 
     free(str);
     str = NULL;
@@ -110,8 +150,11 @@ static char *test_strMid()
     //Assert
     char *str = malloc(80);
     sprintf(str, "Expected |%s| Actual |%s|", expected, actual);
-
     Assert_AreEqual(expected[0], actual[0], str);
+
+    sprintf(str, "Expected |%d| Actual |%d|", (int) strlen(expected),
+            (int) strlen(actual));
+    Assert_AreEqual(strlen(expected), strlen(actual), str);
 
     free(str);
     str = NULL;
@@ -132,8 +175,11 @@ static char *test_strRight()
     //Assert
     char *str = malloc(80);
     sprintf(str, "Expected |%s| Actual |%s|", expected, actual);
-
     Assert_AreEqual(expected[0], actual[0], str);
+
+    sprintf(str, "Expected |%d| Actual |%d|", (int) strlen(expected),
+            (int) strlen(actual));
+    Assert_AreEqual(strlen(expected), strlen(actual), str);
 
     free(str);
     str = NULL;
@@ -155,8 +201,11 @@ static char *test_strLeft()
     //Assert
     char *str = malloc(80);
     sprintf(str, "Expected |%s| Actual |%s|", expected, actual);
-
     Assert_AreEqual(expected[0], actual[0], str);
+
+    sprintf(str, "Expected |%d| Actual |%d|", (int) strlen(expected),
+            (int) strlen(actual));
+    Assert_AreEqual(strlen(expected), strlen(actual), str);
 
     free(str);
     str = NULL;
@@ -183,8 +232,11 @@ static char *test_strConcat()
     //Assert
     char *str = malloc(80);
     sprintf(str, "Expected |%s| Actual |%s|", expected, actual);
-
     Assert_AreEqual(expected[0], actual[0], str);
+
+    sprintf(str, "Expected |%d| Actual |%d|", (int) strlen(expected),
+            (int) strlen(actual));
+    Assert_AreEqual(strlen(expected), strlen(actual), str);
 
     free(str);
     str = NULL;
@@ -247,13 +299,16 @@ static char *test_strCapitalise()
     char *actual = strCapitalise(sourceString);
 
     //Assert
-    char *str3 = malloc(80);
-    sprintf(str3, "Expected %s Actual %s", expected, actual);
+    char *str = malloc(80);
+    sprintf(str, "Expected %s Actual %s", expected, actual);
+    Assert_AreEqual(expected[0], actual[0], str);
 
-    Assert_AreEqual(expected[0], actual[0], str3);
+    sprintf(str, "Expected |%d| Actual |%d|", (int) strlen(expected),
+            (int) strlen(actual));
+    Assert_AreEqual(strlen(expected), strlen(actual), str);
 
-    free(str3);
-    str3 = NULL;
+    free(str);
+    str = NULL;
     free(actual);
     actual = NULL;
 
@@ -270,13 +325,16 @@ static char *test_strLower()
     char *actual = strLowerCase(sourceString);
 
     //Assert
-    char *str3 = malloc(80);
-    sprintf(str3, "Expected %s Actual %s", expected, actual);
+    char *str = malloc(80);
+    sprintf(str, "Expected %s Actual %s", expected, actual);
+    Assert_AreEqual(expected[0], actual[0], str);
 
-    Assert_AreEqual(expected[0], actual[0], str3);
+    sprintf(str, "Expected |%d| Actual |%d|", (int) strlen(expected),
+            (int) strlen(actual));
+    Assert_AreEqual(strlen(expected), strlen(actual), str);
 
-    free(str3);
-    str3 = NULL;
+    free(str);
+    str = NULL;
     free(actual);
     actual = NULL;
 
@@ -293,13 +351,16 @@ static char *test_strUpper()
     char *actual = strUpperCase(sourceString);
 
     //Assert
-    char *str3 = malloc(80);
-    sprintf(str3, "Expected %s Actual %s", expected, actual);
+    char *str = malloc(80);
+    sprintf(str, "Expected %s Actual %s", expected, actual);
+    Assert_AreEqual(expected[0], actual[0], str);
 
-    Assert_AreEqual(expected[0], actual[0], str3);
+    sprintf(str, "Expected |%d| Actual |%d|", (int) strlen(expected),
+            (int) strlen(actual));
+    Assert_AreEqual(strlen(expected), strlen(actual), str);
 
-    free(str3);
-    str3 = NULL;
+    free(str);
+    str = NULL;
     free(actual);
     actual = NULL;
 
@@ -317,12 +378,12 @@ static char *test_strIndex()
     int actual = strIndex(sourceString, searchCharacter, 1);
 
     //Assert
-    char *str3 = malloc(80);
-    sprintf(str3, "Expected %d Actual %d", expected, actual);
+    char *str = malloc(80);
+    sprintf(str, "Expected %d Actual %d", expected, actual);
 
-    Assert_AreEqual(expected, actual, str3);
+    Assert_AreEqual(expected, actual, str);
 
-    free(str3);
+    free(str);
     return 0;
 }
 
@@ -337,12 +398,12 @@ static char *test_strIndex_FindSecondOccurrence()
     int actual = strIndex(sourceString, searchCharacter, 2);
 
     //Assert
-    char *str3 = malloc(80);
-    sprintf(str3, "Expected %d Actual %d", expected, actual);
+    char *str = malloc(80);
+    sprintf(str, "Expected %d Actual %d", expected, actual);
 
-    Assert_AreEqual(expected, actual, str3);
+    Assert_AreEqual(expected, actual, str);
 
-    free(str3);
+    free(str);
     return 0;
 }
 
@@ -357,49 +418,109 @@ static char *test_strIndex_MissingOccurrence()
     int actual = strIndex(sourceString, searchCharacter, 99);
 
     //Assert
-    char *str3 = malloc(80);
-    sprintf(str3, "Expected %d Actual %d", expected, actual);
+    char *str = malloc(80);
+    sprintf(str, "Expected %d Actual %d", expected, actual);
 
-    Assert_AreEqual(expected, actual, str3);
+    Assert_AreEqual(expected, actual, str);
 
-    free(str3);
+    free(str);
     return 0;
 }
 
 static char *all_tests()
 {
-    mu_run_test(test_strRStrip);
-    mu_run_test(test_strLStrip);
-    mu_run_test(test_strLTrim);
-    mu_run_test(test_strRTrim);
-    mu_run_test(test_strMid);
-    mu_run_test(test_strRight);
-    mu_run_test(test_strLeft);
-    mu_run_test(test_strConcat);
-    mu_run_test(test_strStartsWith_NotFound);
-    mu_run_test(test_strStartsWith_Found);
-    mu_run_test(test_strCapitalise);
-    mu_run_test(test_strLower);
-    mu_run_test(test_strUpper);
-    mu_run_test(test_strIndex);
-    mu_run_test(test_strIndex_FindSecondOccurrence);
-    mu_run_test(test_strIndex_MissingOccurrence);
+    tests_current = malloc(100);
+    mu_run_test("test_strStrip", test_strStrip);
+    mu_run_test("test_strRStrip", test_strRStrip);
+    mu_run_test("test_strLStrip", test_strLStrip);
+    mu_run_test("test_strLTrim", test_strLTrim);
+    mu_run_test("test_strRTrim", test_strRTrim);
+    mu_run_test("test_strMid", test_strMid);
+    mu_run_test("test_strRight", test_strRight);
+    mu_run_test("test_strLeft", test_strLeft);
+    mu_run_test("test_strConcat", test_strConcat);
+    mu_run_test("test_strStartsWith_NotFound",
+                test_strStartsWith_NotFound);
+    mu_run_test("test_strStartsWith_Found", test_strStartsWith_Found);
+    mu_run_test("test_strCapitalise", test_strCapitalise);
+    mu_run_test("test_strLower", test_strLower);
+    mu_run_test("test_strUpper", test_strUpper);
+    mu_run_test("test_strIndex", test_strIndex);
+    mu_run_test("test_strIndex_FindSecondOccurrence",
+                test_strIndex_FindSecondOccurrence);
+    mu_run_test("test_strIndex_MissingOccurrence",
+                test_strIndex_MissingOccurrence);
+    free(tests_current);
+    tests_current = NULL;
     return 0;
+}
+
+void print_highlight(bool pass)
+{
+    char pass_highlight[] = "\033[0;32m";       //Green
+    char fail_highlight[] = "\033[0;31m";       //Red
+    char *highlight = pass ? pass_highlight : fail_highlight;
+    printf("%s", highlight);
+}
+
+void print_result_highlight()
+{
+    char bold_yellow[] = "\033[1;33m";
+    printf("%s", bold_yellow);
+}
+
+void print_reset()
+{
+    printf("\033[0m");
 }
 
 int main(int argc, char **argv)
 {
     char *result = all_tests();
+    bool passOrFail = tests_failed == 0;
+
+    print_highlight(passOrFail);
+    printf("--------------------------------------\n");
+
     if (result != 0) {
-        printf("%s\n", result);
+        print_result_highlight();
+        printf("%s: %s\n", tests_current, result);
     } else {
         printf("ALL TESTS PASSED!\n");
     }
+
+    print_highlight(passOrFail);
     printf("Run: %d  Passed: %d  Failed: %d\n", tests_run,
            tests_run - tests_failed, tests_failed);
+    printf("--------------------------------------\n");
+
+
+    print_reset();
 
     return result != 0;
 }
+
+/*
+Terminal Colours
+================
+         foreground background
+black        30         40
+red          31         41
+green        32         42
+yellow       33         43
+blue         34         44
+magenta      35         45
+cyan         36         46
+white        37         47
+
+reset             0  (everything back to normal)
+bold/bright       1  (often a brighter shade of the same colour)
+underline         4
+inverse           7  (swap foreground and background colours)
+bold/bright off  21
+underline off    24
+inverse off      27
+*/
 
 /*
 cd ~/projects/HelloWorldC/tests

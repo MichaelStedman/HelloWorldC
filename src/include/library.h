@@ -17,8 +17,10 @@ char *strRight(const char *sourceString, int length);
 
 char *strLStrip(const char *sourceString, char padChar);
 char *strRStrip(const char *sourceString, char padChar);
+char *strStrip(const char *sourceString, char padChar);
 char *strLTrim(const char *sourceString);
 char *strRTrim(const char *sourceString);
+char *strTrim(const char *sourceString);
 
 char *strConcat(int num, ...);
 
