@@ -8,6 +8,7 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 #define Assert_AreEqual(expected, actual, message) do { if (expected != actual) { tests_failed++; return message; } } while (0)
 #define Assert_AreNotEqual(expected, actual, message) do { if (expected == actual) { tests_failed++; return message; } } while (0)
+#define Assert_AreEqual_String(expected, actual, message) do { if (strcmp(expected, actual)!=0) { tests_failed++; return message; } } while (0)
 
 extern int tests_failed;
 extern int tests_run;

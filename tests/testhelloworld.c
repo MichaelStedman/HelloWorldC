@@ -25,11 +25,7 @@ static char *test_strStrip()
     //Assert
     char *str = malloc(80);
     sprintf(str, "Expected |%s| Actual |%s|", expected, actual);
-    Assert_AreEqual(expected[0], actual[0], str);
-
-    sprintf(str, "Expected |%d| Actual |%d|", (int) strlen(expected),
-            (int) strlen(actual));
-    Assert_AreEqual(strlen(expected), strlen(actual), str);
+    Assert_AreEqual_String(expected, actual, str);
 
     free(str);
     str = NULL;
@@ -50,11 +46,7 @@ static char *test_strRStrip()
     //Assert
     char *str = malloc(80);
     sprintf(str, "Expected |%s| Actual |%s|", expected, actual);
-    Assert_AreEqual(expected[0], actual[0], str);
-
-    sprintf(str, "Expected |%d| Actual |%d|", (int) strlen(expected),
-            (int) strlen(actual));
-    Assert_AreEqual(strlen(expected), strlen(actual), str);
+    Assert_AreEqual_String(expected, actual, str);
 
     free(str);
     str = NULL;
@@ -75,11 +67,7 @@ static char *test_strLStrip()
     //Assert
     char *str = malloc(80);
     sprintf(str, "Expected |%s| Actual |%s|", expected, actual);
-    Assert_AreEqual(expected[0], actual[0], str);
-
-    sprintf(str, "Expected |%d| Actual |%d|", (int) strlen(expected),
-            (int) strlen(actual));
-    Assert_AreEqual(strlen(expected), strlen(actual), str);
+    Assert_AreEqual_String(expected, actual, str);
 
     free(str);
     str = NULL;
@@ -100,11 +88,7 @@ static char *test_strLTrim()
     //Assert
     char *str = malloc(80);
     sprintf(str, "Expected |%s| Actual |%s|", expected, actual);
-    Assert_AreEqual(expected[0], actual[0], str);
-
-    sprintf(str, "Expected |%d| Actual |%d|", (int) strlen(expected),
-            (int) strlen(actual));
-    Assert_AreEqual(strlen(expected), strlen(actual), str);
+    Assert_AreEqual_String(expected, actual, str);
 
     free(str);
     str = NULL;
@@ -125,11 +109,7 @@ static char *test_strRTrim()
     //Assert
     char *str = malloc(80);
     sprintf(str, "Expected |%s| Actual |%s|", expected, actual);
-    Assert_AreEqual(expected[0], actual[0], str);
-
-    sprintf(str, "Expected |%d| Actual |%d|", (int) strlen(expected),
-            (int) strlen(actual));
-    Assert_AreEqual(strlen(expected), strlen(actual), str);
+    Assert_AreEqual_String(expected, actual, str);
 
     free(str);
     str = NULL;
@@ -150,11 +130,7 @@ static char *test_strMid()
     //Assert
     char *str = malloc(80);
     sprintf(str, "Expected |%s| Actual |%s|", expected, actual);
-    Assert_AreEqual(expected[0], actual[0], str);
-
-    sprintf(str, "Expected |%d| Actual |%d|", (int) strlen(expected),
-            (int) strlen(actual));
-    Assert_AreEqual(strlen(expected), strlen(actual), str);
+    Assert_AreEqual_String(expected, actual, str);
 
     free(str);
     str = NULL;
@@ -175,11 +151,7 @@ static char *test_strRight()
     //Assert
     char *str = malloc(80);
     sprintf(str, "Expected |%s| Actual |%s|", expected, actual);
-    Assert_AreEqual(expected[0], actual[0], str);
-
-    sprintf(str, "Expected |%d| Actual |%d|", (int) strlen(expected),
-            (int) strlen(actual));
-    Assert_AreEqual(strlen(expected), strlen(actual), str);
+    Assert_AreEqual_String(expected, actual, str);
 
     free(str);
     str = NULL;
@@ -201,11 +173,7 @@ static char *test_strLeft()
     //Assert
     char *str = malloc(80);
     sprintf(str, "Expected |%s| Actual |%s|", expected, actual);
-    Assert_AreEqual(expected[0], actual[0], str);
-
-    sprintf(str, "Expected |%d| Actual |%d|", (int) strlen(expected),
-            (int) strlen(actual));
-    Assert_AreEqual(strlen(expected), strlen(actual), str);
+    Assert_AreEqual_String(expected, actual, str);
 
     free(str);
     str = NULL;
@@ -232,11 +200,7 @@ static char *test_strConcat()
     //Assert
     char *str = malloc(80);
     sprintf(str, "Expected |%s| Actual |%s|", expected, actual);
-    Assert_AreEqual(expected[0], actual[0], str);
-
-    sprintf(str, "Expected |%d| Actual |%d|", (int) strlen(expected),
-            (int) strlen(actual));
-    Assert_AreEqual(strlen(expected), strlen(actual), str);
+    Assert_AreEqual_String(expected, actual, str);
 
     free(str);
     str = NULL;
@@ -301,11 +265,7 @@ static char *test_strCapitalise()
     //Assert
     char *str = malloc(80);
     sprintf(str, "Expected %s Actual %s", expected, actual);
-    Assert_AreEqual(expected[0], actual[0], str);
-
-    sprintf(str, "Expected |%d| Actual |%d|", (int) strlen(expected),
-            (int) strlen(actual));
-    Assert_AreEqual(strlen(expected), strlen(actual), str);
+    Assert_AreEqual_String(expected, actual, str);
 
     free(str);
     str = NULL;
@@ -327,11 +287,7 @@ static char *test_strLower()
     //Assert
     char *str = malloc(80);
     sprintf(str, "Expected %s Actual %s", expected, actual);
-    Assert_AreEqual(expected[0], actual[0], str);
-
-    sprintf(str, "Expected |%d| Actual |%d|", (int) strlen(expected),
-            (int) strlen(actual));
-    Assert_AreEqual(strlen(expected), strlen(actual), str);
+    Assert_AreEqual_String(expected, actual, str);
 
     free(str);
     str = NULL;
@@ -353,11 +309,7 @@ static char *test_strUpper()
     //Assert
     char *str = malloc(80);
     sprintf(str, "Expected %s Actual %s", expected, actual);
-    Assert_AreEqual(expected[0], actual[0], str);
-
-    sprintf(str, "Expected |%d| Actual |%d|", (int) strlen(expected),
-            (int) strlen(actual));
-    Assert_AreEqual(strlen(expected), strlen(actual), str);
+    Assert_AreEqual_String(expected, actual, str);
 
     free(str);
     str = NULL;
