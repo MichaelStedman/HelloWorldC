@@ -8,5 +8,5 @@ I've played with Clojure, Rust, Go and Python over the past year. I've also writ
 Because it was only three lines of macro to get started. I didn't know enough C to get started with a more comprehensive unit testing framework. Perhaps that will be the focus of a future C project.
 
 #### Why write a bunch of string handling functions?
-a. The standard string functions in C are so dangerous! No wonder there are so many exploits.<br/>
-b. Didn't have any betters ideas about what to write.
+1. The standard string functions in C are so dangerous! No wonder there are so many exploits.
+2. Didn't have any betters ideas about what to write.
