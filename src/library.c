@@ -16,26 +16,36 @@ char *strStrip(const char *sourceString, char padChar)
     char *temp = malloc(sourceStringLength + 1);
     int sp = 0;
     int dp = 0;
+
     //ignore leading padding chars
     while (sp < sourceStringLength && sourceString[sp] == padChar) {
         sp++;
     }
+
     //copy everything except duplicates of padding character
     while (sp < sourceStringLength) {
+
+        //Copy non padding characters
         while (sp < sourceStringLength && sourceString[sp] != padChar) {
             temp[dp++] = sourceString[sp++];
         }
+
+        //Copy the first padding character
         if (sp < sourceStringLength) {
             temp[dp++] = sourceString[sp++];
         }
+
+        //Ignore subsequent padding characters
         while (sp < sourceStringLength && sourceString[sp] == padChar) {
             sp++;
         }
     }
+
     //Pad to full length
     while (dp < sourceStringLength) {
         temp[dp++] = padChar;
     }
+
     char *result = strRStrip(temp, padChar);
     free(temp);
     temp = NULL;
@@ -49,7 +59,8 @@ char *strRStrip(const char *sourceString, char padChar)
     //Find the last non padding character by working 
     //backwards from the end of the sourceString
     int length = strlen(sourceString) - 1;
-    while (length > 0 && sourceString[--length] == padChar) {
+    while (length > 0 && sourceString[length] == padChar) {
+        length--;
     }
     length++;
 
@@ -177,7 +188,7 @@ char *strConcat(int num, ...)
     } va_end(arg);
 
     // Allocate enough room for the result string plus the terminating NULL
-    char *result = malloc(totalLength + 1);
+    char *result = calloc(1,totalLength + 1);
     assert(result);
 
     // Copy each source string into the result string

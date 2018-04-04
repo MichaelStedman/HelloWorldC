@@ -12,6 +12,46 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 int tests_run = 0;
 int tests_failed = 0;
 char *tests_current;
+static char *test_strStrip_EmptyString()
+{
+    //Arrange
+    char sourceString[] = "";
+    char expected[] = "";
+
+    //Act
+    char *actual = strStrip(sourceString, '*');
+
+    //Assert
+    char *str = malloc(80);
+    sprintf(str, "Expected |%s| Actual |%s|", expected, actual);
+    Assert_AreEqual_String(expected, actual, str);
+
+    free(str);
+    str = NULL;
+    free(actual);
+    actual = NULL;
+    return 0;
+}
+static char *test_strStrip_Bug1()
+{
+    //Arrange
+    char sourceString[] = "M H*S";
+    char expected[] = "M H*S";
+
+    //Act
+    char *actual = strStrip(sourceString, '*');
+
+    //Assert
+    char *str = malloc(80);
+    sprintf(str, "Expected |%s| Actual |%s|", expected, actual);
+    Assert_AreEqual_String(expected, actual, str);
+
+    free(str);
+    str = NULL;
+    free(actual);
+    actual = NULL;
+    return 0;
+}
 
 static char *test_strStrip()
 {
@@ -382,6 +422,8 @@ static char *test_strIndex_MissingOccurrence()
 static char *all_tests()
 {
     tests_current = malloc(100);
+    mu_run_test("test_strStrip_EmptyString", test_strStrip_EmptyString);
+    mu_run_test("test_strStrip_Bug1", test_strStrip_Bug1);
     mu_run_test("test_strStrip", test_strStrip);
     mu_run_test("test_strRStrip", test_strRStrip);
     mu_run_test("test_strLStrip", test_strLStrip);
