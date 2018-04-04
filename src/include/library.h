@@ -11,6 +11,8 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #include <assert.h>
 #include <stdarg.h>
 
+char *strLPad(const char *sourceString, char padChar, int length);
+char *strRPad(const char *sourceString, char padChar, int length);
 char *strLeft(const char *sourceString, int length);
 char *strMid(const char *sourceString, int start, int length);
 char *strRight(const char *sourceString, int length);

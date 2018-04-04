@@ -4,6 +4,31 @@ License, v. 2.0. If a copy of the MPL was not distributed with this
 file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 #include "include/library.h"
+
+char *strLPad(const char *sourceString, char padChar, int length)
+{
+    char *result = malloc(length + 1);
+    for (int i = 0; i < length; i++) {
+        result[i] = padChar;
+    }
+    int start = length - strlen(sourceString);
+    if (start < 0)
+        start = 0;
+    strncpy(result + start, sourceString, length);
+    return result;
+}
+
+char *strRPad(const char *sourceString, char padChar, int length)
+{
+    char *result = malloc(length + 1);
+    for (int i = 0; i < length; i++) {
+        result[i] = padChar;
+    }
+    strncpy(result, sourceString,
+            length < strlen(sourceString) ? length : strlen(sourceString));
+    return result;
+}
+
 char *strTrim(const char *sourceString)
 {
     return strStrip(sourceString, ' ');
@@ -34,7 +59,6 @@ char *strStrip(const char *sourceString, char padChar)
         if (sp < sourceStringLength) {
             temp[dp++] = sourceString[sp++];
         }
-
         //Ignore subsequent padding characters
         while (sp < sourceStringLength && sourceString[sp] == padChar) {
             sp++;
@@ -188,7 +212,7 @@ char *strConcat(int num, ...)
     } va_end(arg);
 
     // Allocate enough room for the result string plus the terminating NULL
-    char *result = calloc(1,totalLength + 1);
+    char *result = calloc(1, totalLength + 1);
     assert(result);
 
     // Copy each source string into the result string

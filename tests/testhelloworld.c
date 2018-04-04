@@ -12,6 +12,72 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 int tests_run = 0;
 int tests_failed = 0;
 char *tests_current;
+static char *test_strLPad_SourceLengthExceedsLength()
+{
+    //Arrange
+    char sourceString[] = "MikeStedman";
+    char expected[] = "Mike";
+    int length = strlen(expected);
+
+    //Act
+    char *actual = strLPad(sourceString, '*', length);
+
+    //Assert
+    char *str = malloc(80);
+    sprintf(str, "Expected |%s| Actual |%s|", expected, actual);
+    Assert_AreEqual_String(expected, actual, str);
+
+    free(str);
+    str = NULL;
+    free(actual);
+    actual = NULL;
+    return 0;
+}
+
+static char *test_strLPad()
+{
+    //Arrange
+    char sourceString[] = "Mike";
+    char expected[] = "*****Mike";
+    int length = strlen(expected);
+
+    //Act
+    char *actual = strLPad(sourceString, '*', length);
+
+    //Assert
+    char *str = malloc(80);
+    sprintf(str, "Expected |%s| Actual |%s|", expected, actual);
+    Assert_AreEqual_String(expected, actual, str);
+
+    free(str);
+    str = NULL;
+    free(actual);
+    actual = NULL;
+    return 0;
+}
+
+static char *test_strRPad()
+{
+    //Arrange
+    char sourceString[] = "Mike";
+    char expected[] = "Mike*****";
+    int length = strlen(expected);
+
+    //Act
+    char *actual = strRPad(sourceString, '*', length);
+
+    //Assert
+    char *str = malloc(80);
+    sprintf(str, "Expected |%s| Actual |%s|", expected, actual);
+    Assert_AreEqual_String(expected, actual, str);
+
+    free(str);
+    str = NULL;
+    free(actual);
+    actual = NULL;
+    return 0;
+}
+
 static char *test_strStrip_EmptyString()
 {
     //Arrange
@@ -32,6 +98,7 @@ static char *test_strStrip_EmptyString()
     actual = NULL;
     return 0;
 }
+
 static char *test_strStrip_Bug1()
 {
     //Arrange
@@ -422,6 +489,11 @@ static char *test_strIndex_MissingOccurrence()
 static char *all_tests()
 {
     tests_current = malloc(100);
+
+    mu_run_test("test_strLPad_SourceLengthExceedsLength",
+                test_strLPad_SourceLengthExceedsLength);
+    mu_run_test("test_strRPad", test_strRPad);
+    mu_run_test("test_strLPad", test_strLPad);
     mu_run_test("test_strStrip_EmptyString", test_strStrip_EmptyString);
     mu_run_test("test_strStrip_Bug1", test_strStrip_Bug1);
     mu_run_test("test_strStrip", test_strStrip);
