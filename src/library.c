@@ -5,6 +5,16 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 #include "include/library.h"
 
+int strStrToInt(const char *sourceString)
+{
+    return atoi(sourceString);
+}
+char *strIntToStr(int value)
+{
+    char *result = malloc(11);
+    sprintf(result, "%d", value);
+    return result;
+}
 char *strLPad(const char *sourceString, char padChar, int length)
 {
     char *result = malloc(length + 1);
@@ -88,7 +98,8 @@ char *strRStrip(const char *sourceString, char padChar)
     }
     length++;
 
-    //Create a buffer big enough for the sourceString //without the trailing padding characters plus the terminating NULL
+    //Create a buffer big enough for the sourceString
+    //without the trailing padding characters plus the terminating NULL
     char *result = malloc(length + 1);
 
     //Do the copy from the middle of the sourceString

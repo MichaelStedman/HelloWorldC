@@ -54,5 +54,8 @@ dkms.conf
 #Miscellaneous files
 *.c~
 *.h~
+*.swp
 .vscode
 bin
+Session.vim
+

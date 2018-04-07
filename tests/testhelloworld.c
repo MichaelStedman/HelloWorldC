@@ -12,6 +12,46 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 int tests_run = 0;
 int tests_failed = 0;
 char *tests_current;
+static char *test_strStrToInt()
+{
+    //Arrange
+    char sourceString[] = "1234567";
+    int expected        = 1234567;
+
+    //Act
+    int actual = strStrToInt(sourceString);
+
+    //Assert
+    char *str = malloc(80);
+    sprintf(str, "Expected |%d| Actual |%d|", expected, actual);
+    Assert_AreEqual(expected, actual, str);
+
+    free(str);
+    str = NULL;
+    return 0;
+}
+
+static char *test_strIntToStr()
+{
+    //Arrange
+    int value       = 1234567;
+    char expected[] = "1234567";
+
+    //Act
+    char *actual = strIntToStr(value);
+
+    //Assert
+    char *str = malloc(80);
+    sprintf(str, "Expected |%s| Actual |%s|", expected, actual);
+    Assert_AreEqual_String(expected, actual, str);
+
+    free(str);
+    str = NULL;
+    free(actual);
+    actual = NULL;
+    return 0;
+}
+
 static char *test_strLPad_SourceLengthExceedsLength()
 {
     //Arrange
@@ -490,6 +530,8 @@ static char *all_tests()
 {
     tests_current = malloc(100);
 
+    mu_run_test("test_strStrToInt", test_strStrToInt);
+    mu_run_test("test_strIntToStr", test_strIntToStr);
     mu_run_test("test_strLPad_SourceLengthExceedsLength",
                 test_strLPad_SourceLengthExceedsLength);
     mu_run_test("test_strRPad", test_strRPad);
