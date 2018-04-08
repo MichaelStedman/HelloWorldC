@@ -16,7 +16,7 @@ static char *test_strStrToInt()
 {
     //Arrange
     char sourceString[] = "1234567";
-    int expected        = 1234567;
+    int expected = 1234567;
 
     //Act
     int actual = strStrToInt(sourceString);
@@ -34,7 +34,7 @@ static char *test_strStrToInt()
 static char *test_strIntToStr()
 {
     //Arrange
-    int value       = 1234567;
+    int value = 1234567;
     char expected[] = "1234567";
 
     //Act

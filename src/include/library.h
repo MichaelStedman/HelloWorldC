@@ -11,7 +11,9 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #include <assert.h>
 #include <stdarg.h>
 
-int   strStrToInt(const char *sourceString);
+char *strStrToFloat(const char *sourceString);
+float strFloatToStr(float value);
+int strStrToInt(const char *sourceString);
 char *strIntToStr(int value);
 char *strLPad(const char *sourceString, char padChar, int length);
 char *strRPad(const char *sourceString, char padChar, int length);

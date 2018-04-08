@@ -3,18 +3,36 @@ This Source Code Form is subject to the terms of the Mozilla Public
 License, v. 2.0. If a copy of the MPL was not distributed with this
 file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
-#include "include/library.h"
 
-int strStrToInt(const char *sourceString)
-{
-    return atoi(sourceString);
-}
+#include "include/library.h"
+// double strStrToDouble(const char *sourceString)
+//{
+//    return strtod(*sourceString, NULL);
+//}
+//
+// float strStrToFloat(const char *sourceString)
+//{
+//
+//    return strtof(*sourceString, NULL);
+//}
+//
+// float strStrToFloat(const char *sourceString)
+//{
+//    return atof(sourceString);
+//}
+//
+// int strStrToInt(const char *sourceString)
+//{
+//    return atoi(sourceString);
+//}
+//
 char *strIntToStr(int value)
 {
     char *result = malloc(11);
     sprintf(result, "%d", value);
     return result;
 }
+
 char *strLPad(const char *sourceString, char padChar, int length)
 {
     char *result = malloc(length + 1);
@@ -52,30 +70,30 @@ char *strStrip(const char *sourceString, char padChar)
     int sp = 0;
     int dp = 0;
 
-    //ignore leading padding chars
+    // ignore leading padding chars
     while (sp < sourceStringLength && sourceString[sp] == padChar) {
         sp++;
     }
 
-    //copy everything except duplicates of padding character
+    // copy everything except duplicates of padding character
     while (sp < sourceStringLength) {
 
-        //Copy non padding characters
+        // Copy non padding characters
         while (sp < sourceStringLength && sourceString[sp] != padChar) {
             temp[dp++] = sourceString[sp++];
         }
 
-        //Copy the first padding character
+        // Copy the first padding character
         if (sp < sourceStringLength) {
             temp[dp++] = sourceString[sp++];
         }
-        //Ignore subsequent padding characters
+        // Ignore subsequent padding characters
         while (sp < sourceStringLength && sourceString[sp] == padChar) {
             sp++;
         }
     }
 
-    //Pad to full length
+    // Pad to full length
     while (dp < sourceStringLength) {
         temp[dp++] = padChar;
     }
@@ -90,22 +108,22 @@ char *strRStrip(const char *sourceString, char padChar)
 {
     assert(sourceString);
 
-    //Find the last non padding character by working 
-    //backwards from the end of the sourceString
+    // Find the last non padding character by working
+    // backwards from the end of the sourceString
     int length = strlen(sourceString) - 1;
     while (length > 0 && sourceString[length] == padChar) {
         length--;
     }
     length++;
 
-    //Create a buffer big enough for the sourceString
-    //without the trailing padding characters plus the terminating NULL
+    // Create a buffer big enough for the sourceString
+    // without the trailing padding characters plus the terminating NULL
     char *result = malloc(length + 1);
 
-    //Do the copy from the middle of the sourceString
+    // Do the copy from the middle of the sourceString
     strncpy(result, sourceString, length);
 
-    //Add the terminating NULL character
+    // Add the terminating NULL character
     result[length] = '\0';
     return result;
 }
@@ -124,20 +142,21 @@ char *strLStrip(const char *sourceString, char padChar)
 {
     assert(sourceString);
 
-    //Find the first non padding character by working
-    //forwards from the start of the sourceString
+    // Find the first non padding character by working
+    // forwards from the start of the sourceString
     int start = 0;
     while (start < strlen(sourceString) && sourceString[start] == padChar) {
         start++;
     }
-    //Create a buffer big enough for the sourceString//without the leading padding characters plus the terminating NULL
+    // Create a buffer big enough for the sourceString//without the leading
+    // padding characters plus the terminating NULL
     int length = strlen(sourceString) - start;
     char *result = malloc(length + 1);
 
-    //Do the copy from the middle of the sourceString
+    // Do the copy from the middle of the sourceString
     strncpy(result, sourceString + start, length);
 
-    //Add the terminating NULL character
+    // Add the terminating NULL character
     result[length] = '\0';
     return result;
 }
@@ -153,14 +172,14 @@ char *strMid(const char *sourceString, int start, int length)
     if (length > sourceStringLength) {
         length = sourceStringLength;
     }
-    //Create a buffer big enough for the string plus terminating NULL
+    // Create a buffer big enough for the string plus terminating NULL
     char *result = malloc(length + 1);
     assert(result);
 
-    //Do the copy from the middle of the sourceString
+    // Do the copy from the middle of the sourceString
     strncpy(result, sourceString + start, length);
 
-    //Add the terminating NULL character
+    // Add the terminating NULL character
     result[length] = '\0';
     return result;
 }
@@ -175,14 +194,14 @@ char *strRight(const char *sourceString, int length)
     if (length > sourceStringLength) {
         length = sourceStringLength;
     }
-    //Create a buffer big enough for the string plus terminating NULL
+    // Create a buffer big enough for the string plus terminating NULL
     char *result = malloc(length + 1);
     assert(result);
 
-    //Do the copy from the end of the sourceString
+    // Do the copy from the end of the sourceString
     strncpy(result, sourceString + sourceStringLength - length, length);
 
-    //Add the terminating NULL character
+    // Add the terminating NULL character
     result[length] = '\0';
     return result;
 }
@@ -196,14 +215,14 @@ char *strLeft(const char *sourceString, int length)
     if (length > sourceStringLength) {
         length = sourceStringLength;
     }
-    //Create a buffer big enough for the string plus terminating NULL
+    // Create a buffer big enough for the string plus terminating NULL
     char *result = malloc(length + 1);
     assert(result);
 
-    //Do the copy from the front of the sourceString
+    // Do the copy from the front of the sourceString
     strncpy(result, sourceString, length);
 
-    //Add the terminating NULL character
+    // Add the terminating NULL character
     result[length] = '\0';
     return result;
 }
@@ -220,7 +239,8 @@ char *strConcat(int num, ...)
     for (int i = 0; i < num; i++) {
         char *ptr = va_arg(arg, char *);
         totalLength += strlen(ptr);
-    } va_end(arg);
+    }
+    va_end(arg);
 
     // Allocate enough room for the result string plus the terminating NULL
     char *result = calloc(1, totalLength + 1);
@@ -251,7 +271,7 @@ char *strCapitalise(const char *sourceString)
 
     strcpy(destinationString, sourceString);
 
-    //Upper case the first character
+    // Upper case the first character
     destinationString[0] = toupper(sourceString[0]);
 
     return destinationString;
@@ -271,7 +291,7 @@ char *strChangeCase(const char *sourceString, bool upper)
             upper ? toupper(sourceString[i]) : tolower(sourceString[i]);
         i++;
     }
-    //Copy the terminating NULL character
+    // Copy the terminating NULL character
     destinationString[i] = sourceString[i];
     return destinationString;
 }

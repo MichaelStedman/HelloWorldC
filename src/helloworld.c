@@ -10,6 +10,36 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 int main(int argc, char **argv)
 {
     printf("Hello C World\n");
+
+    char *buffer;
+    size_t bufsize = 32;
+    size_t characters;
+
+    buffer = (char *) malloc(bufsize * sizeof(char));
+    if (buffer == NULL) {
+        perror("Unable to allocate buffer");
+        exit(1);
+    }
+
+    printf("Type something: ");
+    characters = getline(&buffer, &bufsize, stdin);
+//    printf("%zu characters were read.\n",characters);
+
+
+    char *trimmed = strStrip(buffer, '\n');
+    printf("You typed: '%s'\n", trimmed);
+    char *searchString = malloc(100);
+    sprintf(searchString,
+            "egrep -R -H -n '%s' --include=*.c --include=*.h", trimmed);
+
+    //egrep -R -H -n -T 'char\s+\*actual' --include=*.c --include=*.h
+    //system("egrep -R -H -n 'char\\s+\\*actual' --include=*.c --include=*.h");
+    printf("%s\n", searchString);
+    system(searchString);
+    printf("");
+    free(searchString);
+    free(trimmed);
+    free(buffer);
 }
 
 /*
