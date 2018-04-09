@@ -9,10 +9,8 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #include "include/minunit.h"
 #include "../src/include/library.h"
 
-int tests_run = 0;
-int tests_failed = 0;
-char *tests_current;
-static char *test_strStrToInt()
+/*
+MU_TEST(test_strStrToInt)
 {
     //Arrange
     char sourceString[] = "1234567";
@@ -22,16 +20,10 @@ static char *test_strStrToInt()
     int actual = strStrToInt(sourceString);
 
     //Assert
-    char *str = malloc(80);
-    sprintf(str, "Expected |%d| Actual |%d|", expected, actual);
-    Assert_AreEqual(expected, actual, str);
-
-    free(str);
-    str = NULL;
-    return 0;
+    mu_assert_int_eq(expected, actual);
 }
 
-static char *test_strIntToStr()
+MU_TEST(test_strIntToStr)
 {
     //Arrange
     int value = 1234567;
@@ -41,18 +33,12 @@ static char *test_strIntToStr()
     char *actual = strIntToStr(value);
 
     //Assert
-    char *str = malloc(80);
-    sprintf(str, "Expected |%s| Actual |%s|", expected, actual);
-    Assert_AreEqual_String(expected, actual, str);
+    mu_assert_string_eq(expected, actual);
 
-    free(str);
-    str = NULL;
     free(actual);
-    actual = NULL;
-    return 0;
 }
-
-static char *test_strLPad_SourceLengthExceedsLength()
+*/
+MU_TEST(test_strLPad_SourceLengthExceedsLength)
 {
     //Arrange
     char sourceString[] = "MikeStedman";
@@ -63,18 +49,12 @@ static char *test_strLPad_SourceLengthExceedsLength()
     char *actual = strLPad(sourceString, '*', length);
 
     //Assert
-    char *str = malloc(80);
-    sprintf(str, "Expected |%s| Actual |%s|", expected, actual);
-    Assert_AreEqual_String(expected, actual, str);
+    mu_assert_string_eq(expected, actual);
 
-    free(str);
-    str = NULL;
     free(actual);
-    actual = NULL;
-    return 0;
 }
 
-static char *test_strLPad()
+MU_TEST(test_strLPad)
 {
     //Arrange
     char sourceString[] = "Mike";
@@ -85,18 +65,12 @@ static char *test_strLPad()
     char *actual = strLPad(sourceString, '*', length);
 
     //Assert
-    char *str = malloc(80);
-    sprintf(str, "Expected |%s| Actual |%s|", expected, actual);
-    Assert_AreEqual_String(expected, actual, str);
+    mu_assert_string_eq(expected, actual);
 
-    free(str);
-    str = NULL;
     free(actual);
-    actual = NULL;
-    return 0;
 }
 
-static char *test_strRPad()
+MU_TEST(test_strRPad)
 {
     //Arrange
     char sourceString[] = "Mike";
@@ -107,18 +81,12 @@ static char *test_strRPad()
     char *actual = strRPad(sourceString, '*', length);
 
     //Assert
-    char *str = malloc(80);
-    sprintf(str, "Expected |%s| Actual |%s|", expected, actual);
-    Assert_AreEqual_String(expected, actual, str);
+    mu_assert_string_eq(expected, actual);
 
-    free(str);
-    str = NULL;
     free(actual);
-    actual = NULL;
-    return 0;
 }
 
-static char *test_strStrip_EmptyString()
+MU_TEST(test_strStrip_EmptyString)
 {
     //Arrange
     char sourceString[] = "";
@@ -128,18 +96,12 @@ static char *test_strStrip_EmptyString()
     char *actual = strStrip(sourceString, '*');
 
     //Assert
-    char *str = malloc(80);
-    sprintf(str, "Expected |%s| Actual |%s|", expected, actual);
-    Assert_AreEqual_String(expected, actual, str);
+    mu_assert_string_eq(expected, actual);
 
-    free(str);
-    str = NULL;
     free(actual);
-    actual = NULL;
-    return 0;
 }
 
-static char *test_strStrip_Bug1()
+MU_TEST(test_strStrip_Bug1)
 {
     //Arrange
     char sourceString[] = "M H*S";
@@ -149,18 +111,12 @@ static char *test_strStrip_Bug1()
     char *actual = strStrip(sourceString, '*');
 
     //Assert
-    char *str = malloc(80);
-    sprintf(str, "Expected |%s| Actual |%s|", expected, actual);
-    Assert_AreEqual_String(expected, actual, str);
+    mu_assert_string_eq(expected, actual);
 
-    free(str);
-    str = NULL;
     free(actual);
-    actual = NULL;
-    return 0;
 }
 
-static char *test_strStrip()
+MU_TEST(test_strStrip)
 {
     //Arrange
     char sourceString[] = "***Michael***Henry****Stedman*****";
@@ -170,18 +126,12 @@ static char *test_strStrip()
     char *actual = strStrip(sourceString, '*');
 
     //Assert
-    char *str = malloc(80);
-    sprintf(str, "Expected |%s| Actual |%s|", expected, actual);
-    Assert_AreEqual_String(expected, actual, str);
+    mu_assert_string_eq(expected, actual);
 
-    free(str);
-    str = NULL;
     free(actual);
-    actual = NULL;
-    return 0;
 }
 
-static char *test_strRStrip()
+MU_TEST(test_strRStrip)
 {
     //Arrange
     char sourceString[] = "Michael********";
@@ -191,18 +141,12 @@ static char *test_strRStrip()
     char *actual = strRStrip(sourceString, '*');
 
     //Assert
-    char *str = malloc(80);
-    sprintf(str, "Expected |%s| Actual |%s|", expected, actual);
-    Assert_AreEqual_String(expected, actual, str);
+    mu_assert_string_eq(expected, actual);
 
-    free(str);
-    str = NULL;
     free(actual);
-    actual = NULL;
-    return 0;
 }
 
-static char *test_strLStrip()
+MU_TEST(test_strLStrip)
 {
     //Arrange
     char sourceString[] = "****Michael";
@@ -212,18 +156,12 @@ static char *test_strLStrip()
     char *actual = strLStrip(sourceString, '*');
 
     //Assert
-    char *str = malloc(80);
-    sprintf(str, "Expected |%s| Actual |%s|", expected, actual);
-    Assert_AreEqual_String(expected, actual, str);
+    mu_assert_string_eq(expected, actual);
 
-    free(str);
-    str = NULL;
     free(actual);
-    actual = NULL;
-    return 0;
 }
 
-static char *test_strLTrim()
+MU_TEST(test_strLTrim)
 {
     //Arrange
     char sourceString[] = "   Michael";
@@ -233,18 +171,12 @@ static char *test_strLTrim()
     char *actual = strLTrim(sourceString);
 
     //Assert
-    char *str = malloc(80);
-    sprintf(str, "Expected |%s| Actual |%s|", expected, actual);
-    Assert_AreEqual_String(expected, actual, str);
+    mu_assert_string_eq(expected, actual);
 
-    free(str);
-    str = NULL;
     free(actual);
-    actual = NULL;
-    return 0;
 }
 
-static char *test_strRTrim()
+MU_TEST(test_strRTrim)
 {
     //Arrange
     char sourceString[] = "Michael   ";
@@ -254,18 +186,12 @@ static char *test_strRTrim()
     char *actual = strRTrim(sourceString);
 
     //Assert
-    char *str = malloc(80);
-    sprintf(str, "Expected |%s| Actual |%s|", expected, actual);
-    Assert_AreEqual_String(expected, actual, str);
+    mu_assert_string_eq(expected, actual);
 
-    free(str);
-    str = NULL;
     free(actual);
-    actual = NULL;
-    return 0;
 }
 
-static char *test_strMid()
+MU_TEST(test_strMid)
 {
     //Arrange
     char sourceString[] = "Michael";
@@ -275,18 +201,12 @@ static char *test_strMid()
     char *actual = strMid(sourceString, 2, 3);
 
     //Assert
-    char *str = malloc(80);
-    sprintf(str, "Expected |%s| Actual |%s|", expected, actual);
-    Assert_AreEqual_String(expected, actual, str);
+    mu_assert_string_eq(expected, actual);
 
-    free(str);
-    str = NULL;
     free(actual);
-    actual = NULL;
-    return 0;
 }
 
-static char *test_strRight()
+MU_TEST(test_strRight)
 {
     //Arrange
     char sourceString[] = "Michael";
@@ -296,19 +216,12 @@ static char *test_strRight()
     char *actual = strRight(sourceString, 3);
 
     //Assert
-    char *str = malloc(80);
-    sprintf(str, "Expected |%s| Actual |%s|", expected, actual);
-    Assert_AreEqual_String(expected, actual, str);
+    mu_assert_string_eq(expected, actual);
 
-    free(str);
-    str = NULL;
     free(actual);
-    actual = NULL;
-    return 0;
-
 }
 
-static char *test_strLeft()
+MU_TEST(test_strLeft)
 {
     //Arrange
     char sourceString[] = "Michael";
@@ -318,19 +231,12 @@ static char *test_strLeft()
     char *actual = strLeft(sourceString, 3);
 
     //Assert
-    char *str = malloc(80);
-    sprintf(str, "Expected |%s| Actual |%s|", expected, actual);
-    Assert_AreEqual_String(expected, actual, str);
+    mu_assert_string_eq(expected, actual);
 
-    free(str);
-    str = NULL;
     free(actual);
-    actual = NULL;
-    return 0;
-
 }
 
-static char *test_strConcat()
+MU_TEST(test_strConcat)
 {
     //Arrange
     char stringA[] = "Michael";
@@ -345,18 +251,12 @@ static char *test_strConcat()
         strConcat(5, stringA, stringB, stringC, stringD, stringE);
 
     //Assert
-    char *str = malloc(80);
-    sprintf(str, "Expected |%s| Actual |%s|", expected, actual);
-    Assert_AreEqual_String(expected, actual, str);
+    mu_assert_string_eq(expected, actual);
 
-    free(str);
-    str = NULL;
     free(actual);
-    actual = NULL;
-    return 0;
 }
 
-static char *test_strStartsWith_NotFound()
+MU_TEST(test_strStartsWith_NotFound)
 {
     //Arrange
     char sourceString[] = "Mike";
@@ -367,18 +267,10 @@ static char *test_strStartsWith_NotFound()
     bool actual = strStartsWith(sourceString, searchString);
 
     //Assert
-    char *str = malloc(80);
-    sprintf(str, "Expected %d Actual %d", expected, actual);
-
-    Assert_AreEqual(expected, actual, str);
-
-    free(str);
-    str = NULL;
-
-    return 0;
+    mu_assert_int_eq(expected, actual);
 }
 
-static char *test_strStartsWith_Found()
+MU_TEST(test_strStartsWith_Found)
 {
     //Arrange
     char sourceString[] = "Mike";
@@ -389,18 +281,10 @@ static char *test_strStartsWith_Found()
     bool actual = strStartsWith(sourceString, searchString);
 
     //Assert
-    char *str = malloc(80);
-    sprintf(str, "Expected %d Actual %d", expected, actual);
-
-    Assert_AreEqual(expected, actual, str);
-
-    free(str);
-    str = NULL;
-
-    return 0;
+    mu_assert_int_eq(expected, actual);
 }
 
-static char *test_strCapitalise()
+MU_TEST(test_strCapitalise)
 {
     //Arrange
     char sourceString[] = "mike";
@@ -410,19 +294,12 @@ static char *test_strCapitalise()
     char *actual = strCapitalise(sourceString);
 
     //Assert
-    char *str = malloc(80);
-    sprintf(str, "Expected %s Actual %s", expected, actual);
-    Assert_AreEqual_String(expected, actual, str);
+    mu_assert_string_eq(expected, actual);
 
-    free(str);
-    str = NULL;
     free(actual);
-    actual = NULL;
-
-    return 0;
 }
 
-static char *test_strLower()
+MU_TEST(test_strLower)
 {
     //Arrange
     char sourceString[] = "MIKE";
@@ -432,19 +309,12 @@ static char *test_strLower()
     char *actual = strLowerCase(sourceString);
 
     //Assert
-    char *str = malloc(80);
-    sprintf(str, "Expected %s Actual %s", expected, actual);
-    Assert_AreEqual_String(expected, actual, str);
+    mu_assert_string_eq(expected, actual);
 
-    free(str);
-    str = NULL;
     free(actual);
-    actual = NULL;
-
-    return 0;
 }
 
-static char *test_strUpper()
+MU_TEST(test_strUpper)
 {
     //Arrange
     char sourceString[] = "mike";
@@ -454,19 +324,12 @@ static char *test_strUpper()
     char *actual = strUpperCase(sourceString);
 
     //Assert
-    char *str = malloc(80);
-    sprintf(str, "Expected %s Actual %s", expected, actual);
-    Assert_AreEqual_String(expected, actual, str);
+    mu_assert_string_eq(expected, actual);
 
-    free(str);
-    str = NULL;
     free(actual);
-    actual = NULL;
-
-    return 0;
 }
 
-static char *test_strIndex()
+MU_TEST(test_strIndex)
 {
     //Arrange
     char sourceString[] = "abcdefg";
@@ -477,16 +340,10 @@ static char *test_strIndex()
     int actual = strIndex(sourceString, searchCharacter, 1);
 
     //Assert
-    char *str = malloc(80);
-    sprintf(str, "Expected %d Actual %d", expected, actual);
-
-    Assert_AreEqual(expected, actual, str);
-
-    free(str);
-    return 0;
+    mu_assert_int_eq(expected, actual);
 }
 
-static char *test_strIndex_FindSecondOccurrence()
+MU_TEST(test_strIndex_FindSecondOccurrence)
 {
     //Arrange
     char sourceString[] = "abcdefgabcdefg";
@@ -497,16 +354,10 @@ static char *test_strIndex_FindSecondOccurrence()
     int actual = strIndex(sourceString, searchCharacter, 2);
 
     //Assert
-    char *str = malloc(80);
-    sprintf(str, "Expected %d Actual %d", expected, actual);
-
-    Assert_AreEqual(expected, actual, str);
-
-    free(str);
-    return 0;
+    mu_assert_int_eq(expected, actual);
 }
 
-static char *test_strIndex_MissingOccurrence()
+MU_TEST(test_strIndex_MissingOccurrence)
 {
     //Arrange
     char sourceString[] = "abcdefgabcdefg";
@@ -517,50 +368,35 @@ static char *test_strIndex_MissingOccurrence()
     int actual = strIndex(sourceString, searchCharacter, 99);
 
     //Assert
-    char *str = malloc(80);
-    sprintf(str, "Expected %d Actual %d", expected, actual);
-
-    Assert_AreEqual(expected, actual, str);
-
-    free(str);
-    return 0;
+    mu_assert_int_eq(expected, actual);
 }
 
-static char *all_tests()
+MU_TEST_SUITE(test_suite)
 {
-    tests_current = malloc(100);
-
-    mu_run_test("test_strStrToInt", test_strStrToInt);
-    mu_run_test("test_strIntToStr", test_strIntToStr);
-    mu_run_test("test_strLPad_SourceLengthExceedsLength",
-                test_strLPad_SourceLengthExceedsLength);
-    mu_run_test("test_strRPad", test_strRPad);
-    mu_run_test("test_strLPad", test_strLPad);
-    mu_run_test("test_strStrip_EmptyString", test_strStrip_EmptyString);
-    mu_run_test("test_strStrip_Bug1", test_strStrip_Bug1);
-    mu_run_test("test_strStrip", test_strStrip);
-    mu_run_test("test_strRStrip", test_strRStrip);
-    mu_run_test("test_strLStrip", test_strLStrip);
-    mu_run_test("test_strLTrim", test_strLTrim);
-    mu_run_test("test_strRTrim", test_strRTrim);
-    mu_run_test("test_strMid", test_strMid);
-    mu_run_test("test_strRight", test_strRight);
-    mu_run_test("test_strLeft", test_strLeft);
-    mu_run_test("test_strConcat", test_strConcat);
-    mu_run_test("test_strStartsWith_NotFound",
-                test_strStartsWith_NotFound);
-    mu_run_test("test_strStartsWith_Found", test_strStartsWith_Found);
-    mu_run_test("test_strCapitalise", test_strCapitalise);
-    mu_run_test("test_strLower", test_strLower);
-    mu_run_test("test_strUpper", test_strUpper);
-    mu_run_test("test_strIndex", test_strIndex);
-    mu_run_test("test_strIndex_FindSecondOccurrence",
-                test_strIndex_FindSecondOccurrence);
-    mu_run_test("test_strIndex_MissingOccurrence",
-                test_strIndex_MissingOccurrence);
-    free(tests_current);
-    tests_current = NULL;
-    return 0;
+    //mu_run_test("test_strStrToInt", test_strStrToInt);
+    //mu_run_test("test_strIntToStr", test_strIntToStr);
+    MU_RUN_TEST(test_strLPad_SourceLengthExceedsLength);
+    MU_RUN_TEST(test_strRPad);
+    MU_RUN_TEST(test_strLPad);
+    MU_RUN_TEST(test_strStrip_EmptyString);
+    MU_RUN_TEST(test_strStrip_Bug1);
+    MU_RUN_TEST(test_strStrip);
+    MU_RUN_TEST(test_strRStrip);
+    MU_RUN_TEST(test_strLStrip);
+    MU_RUN_TEST(test_strLTrim);
+    MU_RUN_TEST(test_strRTrim);
+    MU_RUN_TEST(test_strMid);
+    MU_RUN_TEST(test_strRight);
+    MU_RUN_TEST(test_strLeft);
+    MU_RUN_TEST(test_strConcat);
+    MU_RUN_TEST(test_strStartsWith_NotFound);
+    MU_RUN_TEST(test_strStartsWith_Found);
+    MU_RUN_TEST(test_strCapitalise);
+    MU_RUN_TEST(test_strLower);
+    MU_RUN_TEST(test_strUpper);
+    MU_RUN_TEST(test_strIndex);
+    MU_RUN_TEST(test_strIndex_FindSecondOccurrence);
+    MU_RUN_TEST(test_strIndex_MissingOccurrence);
 }
 
 void print_highlight(bool pass)
@@ -584,53 +420,34 @@ void print_reset()
 
 int main(int argc, char **argv)
 {
-    char *result = all_tests();
-    bool passOrFail = tests_failed == 0;
-
-    print_highlight(passOrFail);
-    printf("--------------------------------------\n");
-
-    if (result != 0) {
-        print_result_highlight();
-        printf("%s: %s\n", tests_current, result);
-    } else {
-        printf("ALL TESTS PASSED!\n");
-    }
-
-    print_highlight(passOrFail);
-    printf("Run: %d  Passed: %d  Failed: %d\n", tests_run,
-           tests_run - tests_failed, tests_failed);
-    printf("--------------------------------------\n");
-
-
-    print_reset();
-
-    return result != 0;
+    MU_RUN_SUITE(test_suite);
+    MU_REPORT();
+    return 0;
 }
 
 /*
-Terminal Colours
-================
-         foreground background
-black        30         40
-red          31         41
-green        32         42
-yellow       33         43
-blue         34         44
-magenta      35         45
-cyan         36         46
-white        37         47
+    Terminal Colours
+    ================
+    foreground background
+    black        30         40
+    red          31         41
+    green        32         42
+    yellow       33         43
+    blue         34         44
+    magenta      35         45
+    cyan         36         46
+    white        37         47
 
-reset             0  (everything back to normal)
-bold/bright       1  (often a brighter shade of the same colour)
-underline         4
-inverse           7  (swap foreground and background colours)
-bold/bright off  21
-underline off    24
-inverse off      27
-*/
+    reset             0  (everything back to normal)
+    bold/bright       1  (often a brighter shade of the same colour)
+    underline         4
+    inverse           7  (swap foreground and background colours)
+    bold/bright off  21
+    underline off    24
+    inverse off      27
+    */
 
 /*
-cd ~/projects/HelloWorldC/tests
-gcc testhelloworld.c ../bin/library.o -o ../bin/testhelloworld
-*/
+    cd ~/projects/HelloWorldC/tests
+    gcc testhelloworld.c ../bin/library.o -o ../bin/testhelloworld
+    */

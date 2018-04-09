@@ -15,16 +15,16 @@ int main(int argc, char **argv)
     size_t bufsize = 32;
     size_t characters;
 
-    buffer = (char *) malloc(bufsize * sizeof(char));
-    if (buffer == NULL) {
+    buffer = (char *)malloc(bufsize * sizeof(char));
+    if (buffer == NULL)
+    {
         perror("Unable to allocate buffer");
         exit(1);
     }
 
     printf("Type something: ");
     characters = getline(&buffer, &bufsize, stdin);
-//    printf("%zu characters were read.\n",characters);
-
+    //    printf("%zu characters were read.\n",characters);
 
     char *trimmed = strStrip(buffer, '\n');
     printf("You typed: '%s'\n", trimmed);
@@ -36,7 +36,7 @@ int main(int argc, char **argv)
     //system("egrep -R -H -n 'char\\s+\\*actual' --include=*.c --include=*.h");
     printf("%s\n", searchString);
     system(searchString);
-    printf("");
+    printf("\n");
     free(searchString);
     free(trimmed);
     free(buffer);
