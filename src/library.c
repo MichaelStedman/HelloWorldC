@@ -36,7 +36,8 @@ char *strIntToStr(int value)
 char *strLPad(const char *sourceString, char padChar, int length)
 {
     char *result = malloc(length + 1);
-    for (int i = 0; i < length; i++) {
+    int i;
+    for (i = 0; i < length; i++) {
         result[i] = padChar;
     }
     int start = length - strlen(sourceString);
@@ -49,7 +50,8 @@ char *strLPad(const char *sourceString, char padChar, int length)
 char *strRPad(const char *sourceString, char padChar, int length)
 {
     char *result = malloc(length + 1);
-    for (int i = 0; i < length; i++) {
+    int i;
+    for (i = 0; i < length; i++) {
         result[i] = padChar;
     }
     strncpy(result, sourceString,
@@ -236,7 +238,8 @@ char *strConcat(int num, ...)
     // How long will the final string be?
     // Iterate over the arguments and sum their lengths
     va_start(arg, num);
-    for (int i = 0; i < num; i++) {
+    int i;
+    for (i = 0; i < num; i++) {
         char *ptr = va_arg(arg, char *);
         totalLength += strlen(ptr);
     }
@@ -248,7 +251,7 @@ char *strConcat(int num, ...)
 
     // Copy each source string into the result string
     va_start(arg, num);
-    for (int i = 0; i < num; i++) {
+    for (i = 0; i < num; i++) {
         char *ptr = va_arg(arg, char *);
         strncat(result, ptr, strlen(ptr));
     }

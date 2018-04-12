@@ -83,6 +83,11 @@ static char minunit_last_message[MINUNIT_MESSAGE_LEN];
 static void (*minunit_setup)(void) = NULL;
 static void (*minunit_teardown)(void) = NULL;
 
+/*  Colours to prettify printed results */
+static char pass_highlight[] = "\033[0;32m"; //Green
+static char fail_highlight[] = "\033[0;31m"; //Red
+static char reset_highlight[] = "\033[0m";   //Reset
+
 /*  Definitions */
 #define MU_TEST(method_name) static void method_name(void)
 #define MU_TEST_SUITE(suite_name) static void suite_name(void)
@@ -123,21 +128,21 @@ static void (*minunit_teardown)(void) = NULL;
 #define MU_REPORT() MU__SAFE_BLOCK(                                                              \
     double minunit_end_real_timer;                                                               \
     double minunit_end_proc_timer;                                                               \
-    if (minunit_fail == 0) printf("\033[0;32m");                                                 \
+    if (minunit_fail == 0) printf("%s", pass_highlight);                                         \
     printf("\n----------------------------------------------\n");                                \
     printf("%d tests, %d assertions, %d failures\n", minunit_run, minunit_assert, minunit_fail); \
     minunit_end_real_timer = mu_timer_real();                                                    \
     minunit_end_proc_timer = mu_timer_cpu();                                                     \
     printf("\nFinished in %.4f seconds\n",                                                       \
            minunit_end_real_timer - minunit_real_timer);                                         \
-    printf("----------------------------------------------\033[0m\n\n");)
+    printf("%s----------------------------------------------\n\n", reset_highlight);)
 
 /*  Assertions */
 #define mu_check(test) MU__SAFE_BLOCK(                                                                              \
     minunit_assert++;                                                                                               \
     if (!(test)) {                                                                                                  \
         if (minunit_fail == 0)                                                                                      \
-            printf("\033[0;31m----------------------------------------------\n");                                   \
+            printf("%s----------------------------------------------\n", fail_highlight);                           \
         snprintf(minunit_last_message, MINUNIT_MESSAGE_LEN, "%s:%d:\t%s: %s", __FILE__, __LINE__, __func__, #test); \
         minunit_status = 1;                                                                                         \
         return;                                                                                                     \
@@ -145,7 +150,7 @@ static void (*minunit_teardown)(void) = NULL;
 
 #define mu_fail(message) MU__SAFE_BLOCK(                                                                          \
     minunit_assert++;                                                                                             \
-    if (minunit_fail == 0) printf("\033[0;31m----------------------------------------------\n");                  \
+    if (minunit_fail == 0) printf("%s----------------------------------------------\n", fail_highlight);          \
     snprintf(minunit_last_message, MINUNIT_MESSAGE_LEN, "%s:%d:\t%s: %s", __FILE__, __LINE__, __func__, message); \
     minunit_status = 1;                                                                                           \
     return;)
@@ -154,7 +159,7 @@ static void (*minunit_teardown)(void) = NULL;
     minunit_assert++;                                                                                                 \
     if (!(test)) {                                                                                                    \
         if (minunit_fail == 0)                                                                                        \
-            printf("\033[0;31m----------------------------------------------\n");                                     \
+            printf("%s----------------------------------------------\n", fail_highlight);                             \
         snprintf(minunit_last_message, MINUNIT_MESSAGE_LEN, "%s:%d:\t%s: %s", __FILE__, __LINE__, __func__, message); \
         minunit_status = 1;                                                                                           \
         return;                                                                                                       \
@@ -168,7 +173,7 @@ static void (*minunit_teardown)(void) = NULL;
     minunit_tmp_r = (result);                                                                                                                                  \
     if (minunit_tmp_e != minunit_tmp_r) {                                                                                                                      \
         if (minunit_fail == 0)                                                                                                                                 \
-            printf("\033[0;31m----------------------------------------------\n");                                                                              \
+            printf("%s----------------------------------------------\n", fail_highlight);                                                                      \
         snprintf(minunit_last_message, MINUNIT_MESSAGE_LEN, "%s:%d:\t%s: %d expected but was %d", __FILE__, __LINE__, __func__, minunit_tmp_e, minunit_tmp_r); \
         minunit_status = 1;                                                                                                                                    \
         return;                                                                                                                                                \
@@ -183,15 +188,15 @@ static void (*minunit_teardown)(void) = NULL;
     if (fabs(minunit_tmp_e - minunit_tmp_r) > MINUNIT_EPSILON) {                                                                                                                                                             \
         int minunit_significant_figures = 1 - log10(MINUNIT_EPSILON);                                                                                                                                                        \
         if (minunit_fail == 0)                                                                                                                                                                                               \
-            printf("\033[0;31m----------------------------------------------\n");                                                                                                                                            \
+            printf("%s----------------------------------------------\n", fail_highlight);                                                                                                                                    \
         snprintf(minunit_last_message, MINUNIT_MESSAGE_LEN, "%s:%d:\t%s: %.*g expected but was %.*g", __FILE__, __LINE__, __func__, minunit_significant_figures, minunit_tmp_e, minunit_significant_figures, minunit_tmp_r); \
         minunit_status = 1;                                                                                                                                                                                                  \
         return;                                                                                                                                                                                                              \
     })
 
 #define mu_assert_string_eq(expected, result) MU__SAFE_BLOCK(                                                                                                      \
-    const char *minunit_tmp_e = expected;                                                                                                                          \
-    const char *minunit_tmp_r = result;                                                                                                                            \
+    const char* minunit_tmp_e = expected;                                                                                                                          \
+    const char* minunit_tmp_r = result;                                                                                                                            \
     minunit_assert++;                                                                                                                                              \
     if (!minunit_tmp_e) {                                                                                                                                          \
         minunit_tmp_e = "<null pointer>";                                                                                                                          \
@@ -199,7 +204,7 @@ static void (*minunit_teardown)(void) = NULL;
         minunit_tmp_r = "<null pointer>";                                                                                                                          \
     } if (strcmp(minunit_tmp_e, minunit_tmp_r)) {                                                                                                                  \
         if (minunit_fail == 0)                                                                                                                                     \
-            printf("\033[0;31m----------------------------------------------\n");                                                                                  \
+            printf("%s----------------------------------------------\n", fail_highlight);                                                                          \
         snprintf(minunit_last_message, MINUNIT_MESSAGE_LEN, "%s:%d:\t%s: '%s' expected but was '%s'", __FILE__, __LINE__, __func__, minunit_tmp_e, minunit_tmp_r); \
         minunit_status = 1;                                                                                                                                        \
         return;                                                                                                                                                    \
@@ -245,8 +250,7 @@ static double mu_timer_real(void)
         mach_timebase_info_data_t timeBase;
         (void)mach_timebase_info(&timeBase);
         timeConvert = (double)timeBase.numer /
-                      (double)timeBase.denom /
-                      1000000000.0;
+                      (double)timeBase.denom / 1000000000.0;
     }
     return (double)mach_absolute_time() * timeConvert;
 
@@ -280,7 +284,6 @@ static double mu_timer_real(void)
         /* Fall thru. */
     }
 #endif /* _POSIX_TIMERS */
-
     /* AIX, BSD, Cygwin, HP-UX, Linux, OSX, POSIX, Solaris. ----- */
     gettimeofday(&tm, NULL);
     return (double)tm.tv_sec + (double)tm.tv_usec / 1000000.0;
@@ -288,12 +291,11 @@ static double mu_timer_real(void)
     return -1.0; /* Failed. */
 #endif
 }
-
 /**
  * Returns the amount of CPU time used by the current process,
  * in seconds, or -1.0 if an error occurred.
- */
-static double mu_timer_cpu(void)
+ */ static double
+mu_timer_cpu(void)
 {
 #if defined(_WIN32)
     /* Windows -------------------------------------------------- */
@@ -304,13 +306,13 @@ static double mu_timer_cpu(void)
 
     /* This approach has a resolution of 1/64 second. Unfortunately, Windows' API does not offer better */
     if (GetProcessTimes(GetCurrentProcess(),
-                        &createTime, &exitTime, &kernelTime, &userTime) != 0)
+                        &createTime, &exitTime, &kernelTime,
+                        &userTime) != 0)
     {
         ULARGE_INTEGER userSystemTime;
         memcpy(&userSystemTime, &userTime, sizeof(ULARGE_INTEGER));
         return (double)userSystemTime.QuadPart / 10000000.0;
     }
-
 #elif defined(__unix__) || defined(__unix) || defined(unix) || (defined(__APPLE__) && defined(__MACH__))
 /* AIX, BSD, Cygwin, HP-UX, Linux, OSX, and Solaris --------- */
 
