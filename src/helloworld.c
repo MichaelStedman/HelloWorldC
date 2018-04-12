@@ -24,7 +24,6 @@ int main(int argc, char **argv)
 
     printf("Type something: ");
     characters = getline(&buffer, &bufsize, stdin);
-    //    printf("%zu characters were read.\n",characters);
 
     char *trimmed = strStrip(buffer, '\n');
     printf("You typed: '%s'\n", trimmed);
