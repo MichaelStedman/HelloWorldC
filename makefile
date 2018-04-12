@@ -11,9 +11,9 @@ all:
 	
 
 travistest:
-	@gcc -g -lrt -lm -o tests/testhelloworld.c src/library.c -I.
+	@gcc -g -lrt -lm tests/testhelloworld.c src/library.c -I.
 
 travisbuild:
-	@gcc -g -lrt -lm -o src/helloworld.c src/library.c -I.
+	@gcc -g -lrt -lm src/helloworld.c src/library.c -I.
 
 	
