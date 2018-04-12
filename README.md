@@ -1,4 +1,4 @@
-## HelloWorldC
+## HelloWorldC [![Build Status](https://travis-ci.org/MichaelStedman/HelloWorldC.svg?branch=master)](https://travis-ci.org/MichaelStedman/HelloWorldC)
 This is just a little project for me to learn some C, Git and GitHub.
 
 #### Why learn C at the age of 60?
