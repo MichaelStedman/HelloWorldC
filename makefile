@@ -8,3 +8,12 @@ build:
 all:		
 	@gcc -g -lrt -lm -o bin/helloworld src/helloworld.c src/library.c -I.
 	@gcc -g -lrt -lm -o bin/testhelloworld tests/testhelloworld.c src/library.c -I.	
+	
+
+travistest:
+	@gcc -g -lrt -lm -o tests/testhelloworld.c src/library.c -I.
+
+travisbuild:
+	@gcc -g -lrt -lm -o src/helloworld.c src/library.c -I.
+
+	
