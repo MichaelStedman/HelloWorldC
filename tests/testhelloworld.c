@@ -15,7 +15,6 @@ MU_TEST(test_strStrToInt)
     //Arrange
     char sourceString[] = "1234567";
     int expected = 1234567;
-
     //Act
     int actual = strStrToInt(sourceString);
 
