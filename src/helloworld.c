@@ -32,8 +32,6 @@ int main(int argc, char **argv)
     sprintf(searchString,
             "egrep -R -H -n '%s' --include=*.c --include=*.h", trimmed);
 
-    //egrep -R -H -n -T 'char\s+\*actual' --include=*.c --include=*.h
-    //system("egrep -R -H -n 'char\\s+\\*actual' --include=*.c --include=*.h");
     printf("%s\n", searchString);
     system(searchString);
     printf("\n");
