@@ -3,8 +3,15 @@ This Source Code Form is subject to the terms of the Mozilla Public
 License, v. 2.0. If a copy of the MPL was not distributed with this
 file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
+///
+/// The library.c file contains the primary functions used by HelloWorld. These
+/// are focussed on providing the same string functions that I've used previously
+/// in Basic and C#. These functions always return a new copy of the string with
+/// the required changes rather than mutating the original string.
+///
 
 #include "include/library.h"
+
 // double strStrToDouble(const char *sourceString)
 //{
 //    return strtod(*sourceString, NULL);
