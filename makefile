@@ -13,8 +13,8 @@ all:
 	
 
 travistest:
-	$(CC) -g -lrt -lm tests/testhelloworld.c src/library.c -I.
-	testhelloworld
+	$(CC) -g -lrt -lm -o testhelloworld tests/testhelloworld.c src/library.c -I.
+	./testhelloworld
 
 travisbuild:
 	$(CC) -g -lrt -lm src/helloworld.c src/library.c -I.
