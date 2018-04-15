@@ -38,6 +38,7 @@ int main(int argc, char **argv)
     free(trimmed);
     free(buffer);
 */
+    return 0;
 }
 
 /*
