@@ -23,5 +23,5 @@ travistest:
 
 travisbuild:
 	$(CC) -g -lrt -lm -Wall -fprofile-arcs -ftest-coverage -o helloworld src/helloworld.c src/library.c -I.
-
-	
+	./helloworld
+	gcov helloworld	
