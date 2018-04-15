@@ -55,7 +55,10 @@ dkms.conf
 *.c~
 *.h~
 *.swp
+*.gcno
 .vscode
 bin
 Session.vim
 testhelloworld
+
+

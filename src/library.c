@@ -240,7 +240,6 @@ char *strConcat(int num, ...)
 {
     int totalLength = 0;
     va_list arg;
-    int done;
 
     // How long will the final string be?
     // Iterate over the arguments and sum their lengths

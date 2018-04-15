@@ -127,12 +127,10 @@ static char reset_highlight[] = "\033[0m";   //Reset
 /*  Report */
 #define MU_REPORT() MU__SAFE_BLOCK(                                                              \
     double minunit_end_real_timer;                                                               \
-    double minunit_end_proc_timer;                                                               \
     if (minunit_fail == 0) printf("%s", pass_highlight);                                         \
     printf("\n----------------------------------------------\n");                                \
     printf("%d tests, %d assertions, %d failures\n", minunit_run, minunit_assert, minunit_fail); \
     minunit_end_real_timer = mu_timer_real();                                                    \
-    minunit_end_proc_timer = mu_timer_cpu();                                                     \
     printf("\nFinished in %.4f seconds\n",                                                       \
            minunit_end_real_timer - minunit_real_timer);                                         \
     printf("%s----------------------------------------------\n\n", reset_highlight);)
