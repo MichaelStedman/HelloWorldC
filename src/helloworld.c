@@ -10,7 +10,7 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 int main(int argc, char **argv)
 {
     printf("Hello C World\n");
-
+/*
     char *buffer;
     size_t bufsize = 32;
     size_t characters;
@@ -37,6 +37,7 @@ int main(int argc, char **argv)
     free(searchString);
     free(trimmed);
     free(buffer);
+*/
 }
 
 /*
