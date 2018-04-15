@@ -18,6 +18,8 @@ coverage:
 travistest:
 	$(CC) -g -lrt -lm -Wall -fprofile-arcs -ftest-coverage -o testhelloworld tests/testhelloworld.c src/library.c -I.
 	./testhelloworld
+	gcov testhelloworld
+	gcov library
 
 travisbuild:
 	$(CC) -g -lrt -lm -Wall -fprofile-arcs -ftest-coverage -o helloworld src/helloworld.c src/library.c -I.

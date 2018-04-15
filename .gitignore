@@ -55,10 +55,13 @@ dkms.conf
 *.c~
 *.h~
 *.swp
-*.gcno
 .vscode
 bin
 Session.vim
 testhelloworld
 
-
+#Code Coverage files
+*.c.gcov
+*.h.gcov
+*.gcda
+*.gcno
