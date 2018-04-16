@@ -201,6 +201,20 @@ MU_TEST(test_strTrim)
 
     free(actual);
 }
+MU_TEST(test_strMid_LengthTooLong)
+{
+    //Arrange
+    char sourceString[] = "Michael";
+    char expected[] = "chael";
+
+    //Act
+    char *actual = strMid(sourceString, 2, 99);
+
+    //Assert
+    mu_assert_string_eq(expected, actual);
+
+    free(actual);
+}
 MU_TEST(test_strMid)
 {
     //Arrange
@@ -215,7 +229,20 @@ MU_TEST(test_strMid)
 
     free(actual);
 }
+MU_TEST(test_strRight_LengthTooLong)
+{
+    //Arrange
+    char sourceString[] = "Michael";
+    char expected[] = "Michael";
 
+    //Act
+    char *actual = strRight(sourceString, 99);
+
+    //Assert
+    mu_assert_string_eq(expected, actual);
+
+    free(actual);
+}
 MU_TEST(test_strRight)
 {
     //Arrange
@@ -230,7 +257,20 @@ MU_TEST(test_strRight)
 
     free(actual);
 }
+MU_TEST(test_strLeft_LengthTooLong)
+{
+    //Arrange
+    char sourceString[] = "Michael";
+    char expected[] = "Michael";
 
+    //Act
+    char *actual = strLeft(sourceString, 99);
+
+    //Assert
+    mu_assert_string_eq(expected, actual);
+
+    free(actual);
+}
 MU_TEST(test_strLeft)
 {
     //Arrange
@@ -396,8 +436,11 @@ MU_TEST_SUITE(test_suite)
     MU_RUN_TEST(test_strLTrim);
     MU_RUN_TEST(test_strRTrim);
     MU_RUN_TEST(test_strTrim);
+    MU_RUN_TEST(test_strMid_LengthTooLong);
     MU_RUN_TEST(test_strMid);
+    MU_RUN_TEST(test_strRight_LengthTooLong);
     MU_RUN_TEST(test_strRight);
+    MU_RUN_TEST(test_strLeft_LengthTooLong);
     MU_RUN_TEST(test_strLeft);
     MU_RUN_TEST(test_strConcat);
     MU_RUN_TEST(test_strStartsWith_NotFound);
