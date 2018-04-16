@@ -187,7 +187,20 @@ MU_TEST(test_strRTrim)
 
     free(actual);
 }
+MU_TEST(test_strTrim)
+{
+    //Arrange
+    char sourceString[] = "   Michael  Stedman   ";
+    char expected[] = "Michael Stedman";
 
+    //Act
+    char *actual = strTrim(sourceString);
+
+    //Assert
+    mu_assert_string_eq(expected, actual);
+
+    free(actual);
+}
 MU_TEST(test_strMid)
 {
     //Arrange
@@ -382,6 +395,7 @@ MU_TEST_SUITE(test_suite)
     MU_RUN_TEST(test_strLStrip);
     MU_RUN_TEST(test_strLTrim);
     MU_RUN_TEST(test_strRTrim);
+    MU_RUN_TEST(test_strTrim);
     MU_RUN_TEST(test_strMid);
     MU_RUN_TEST(test_strRight);
     MU_RUN_TEST(test_strLeft);
