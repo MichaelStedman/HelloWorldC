@@ -310,7 +310,7 @@ MU_TEST(test_strStartsWith_NotFound)
 {
     //Arrange
     char sourceString[] = "Mike";
-    char searchString[] = "xx";
+    char searchString[] = "xxx";
     bool expected = false;
 
     //Act
