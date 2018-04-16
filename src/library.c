@@ -27,12 +27,12 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 //{
 //    return atof(sourceString);
 //}
-//
-// int strStrToInt(const char *sourceString)
-//{
-//    return atoi(sourceString);
-//}
-//
+
+ int strStrToInt(const char *sourceString)
+{
+    return atoi(sourceString);
+}
+
 char *strIntToStr(int value)
 {
     char *result = malloc(11);

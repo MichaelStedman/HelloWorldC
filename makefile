@@ -12,8 +12,10 @@ all:
 	@$(CC) -g -lrt -lm -o bin/testhelloworld tests/testhelloworld.c src/library.c -I.
 
 coverage:		
-	@$(CC) -g -lrt -lm -Wall -fprofile-arcs -ftest-coverage tests/testhelloworld.c src/library.c -I.
-	gcov testhelloworld.gcno
+	@$(CC) -g -lrt -lm -Wall -fprofile-arcs -ftest-coverage -o bin/testhelloworld tests/testhelloworld.c src/library.c -I.
+	@bin/testhelloworld
+	gcov bin/testhelloworld
+	gcov bin/library
 
 travistest:
 	$(CC) -g -lrt -lm -Wall -fprofile-arcs -ftest-coverage -o testhelloworld tests/testhelloworld.c src/library.c -I.

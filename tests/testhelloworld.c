@@ -9,7 +9,6 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #include "include/minunit.h"
 #include "../src/include/library.h"
 
-/*
 MU_TEST(test_strStrToInt)
 {
     //Arrange
@@ -36,7 +35,6 @@ MU_TEST(test_strIntToStr)
 
     free(actual);
 }
-*/
 MU_TEST(test_strLPad_SourceLengthExceedsLength)
 {
     //Arrange
@@ -372,8 +370,8 @@ MU_TEST(test_strIndex_MissingOccurrence)
 
 MU_TEST_SUITE(test_suite)
 {
-    //mu_run_test("test_strStrToInt", test_strStrToInt);
-    //mu_run_test("test_strIntToStr", test_strIntToStr);
+    MU_RUN_TEST(test_strStrToInt);
+    MU_RUN_TEST(test_strIntToStr);
     MU_RUN_TEST(test_strLPad_SourceLengthExceedsLength);
     MU_RUN_TEST(test_strRPad);
     MU_RUN_TEST(test_strLPad);
