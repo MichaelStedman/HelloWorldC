@@ -65,3 +65,10 @@ testhelloworld
 *.h.gcov
 *.gcda
 *.gcno
+coverage
+coverage/src
+coverage/tests
+coverage/tests/include
+
+
+

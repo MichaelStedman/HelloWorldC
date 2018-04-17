@@ -11,11 +11,14 @@ all:
 	@$(CC) -g -lrt -lm -o bin/helloworld src/helloworld.c src/library.c -I.
 	@$(CC) -g -lrt -lm -o bin/testhelloworld tests/testhelloworld.c src/library.c -I.
 
-coverage:		
+cov:		
 	@$(CC) -g -lrt -lm -Wall -fprofile-arcs -ftest-coverage -o bin/testhelloworld tests/testhelloworld.c src/library.c -I.
+	lcov --directory . --zerocounters
 	@bin/testhelloworld
-	gcov bin/testhelloworld
-	gcov bin/library
+	gcov testhelloworld
+	gcov library
+	lcov --directory . --capture --output-file coverage/app.info
+	genhtml coverage/app.info -o ./coverage
 
 travistest:
 	$(CC) -g -lrt -lm -Wall -fprofile-arcs -ftest-coverage -o testhelloworld tests/testhelloworld.c src/library.c -I.

@@ -8,6 +8,30 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #include <stdlib.h>
 #include "include/minunit.h"
 #include "../src/include/library.h"
+MU_TEST(test_strStrToDouble)
+{
+    //Arrange
+    char sourceString[] = "1234567";
+    double expected = 1234567;
+    //Act
+    double actual = strStrToDouble(sourceString);
+
+    //Assert
+    mu_assert_int_eq(expected, actual);
+}
+
+MU_TEST(test_strStrToFloat)
+{
+    //Arrange
+    char sourceString[] = "1234567";
+    float expected = 1234567;
+    //Act
+    float actual = strStrToFloat(sourceString);
+
+    //Assert
+    mu_assert_int_eq(expected, actual);
+}
+
 
 MU_TEST(test_strStrToInt)
 {
@@ -423,6 +447,8 @@ MU_TEST(test_strIndex_MissingOccurrence)
 
 MU_TEST_SUITE(test_suite)
 {
+    MU_RUN_TEST(test_strStrToDouble);
+    MU_RUN_TEST(test_strStrToFloat);
     MU_RUN_TEST(test_strStrToInt);
     MU_RUN_TEST(test_strIntToStr);
     MU_RUN_TEST(test_strLPad_SourceLengthExceedsLength);
@@ -451,25 +477,6 @@ MU_TEST_SUITE(test_suite)
     MU_RUN_TEST(test_strIndex);
     MU_RUN_TEST(test_strIndex_FindSecondOccurrence);
     MU_RUN_TEST(test_strIndex_MissingOccurrence);
-}
-
-void print_highlight(bool pass)
-{
-    char pass_highlight[] = "\033[0;32m";       //Green
-    char fail_highlight[] = "\033[0;31m";       //Red
-    char *highlight = pass ? pass_highlight : fail_highlight;
-    printf("%s", highlight);
-}
-
-void print_result_highlight()
-{
-    char bold_yellow[] = "\033[1;33m";
-    printf("%s", bold_yellow);
-}
-
-void print_reset()
-{
-    printf("\033[0m");
 }
 
 int main(int argc, char **argv)

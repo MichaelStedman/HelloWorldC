@@ -12,20 +12,20 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 #include "include/library.h"
 
-// double strStrToDouble(const char *sourceString)
+double strStrToDouble(const char *sourceString)
+{
+    return strtod(sourceString, NULL);
+}
+
+float strStrToFloat(const char *sourceString)
+{
+
+    return strtof(sourceString, NULL);
+}
+
+//float strStrToFloat(const char *sourceString)
 //{
-//    return strtod(*sourceString, NULL);
-//}
-//
-// float strStrToFloat(const char *sourceString)
-//{
-//
-//    return strtof(*sourceString, NULL);
-//}
-//
-// float strStrToFloat(const char *sourceString)
-//{
-//    return atof(sourceString);
+//   return atof(sourceString);
 //}
 
  int strStrToInt(const char *sourceString)
