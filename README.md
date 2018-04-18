@@ -14,5 +14,5 @@ It was only three lines of macro to get started. Then I stumbled across an enhan
 #### Why use Travis CI for a Hello World project?
 I hadn't used Travis (or any CI) before and these tools are generally easier to use with simple projects.
 
-#### Why is Coveralls showing "coverage unknown"?
-I've only just added Coveralls and the set up is confusing. I followed the instructions then suddenly it tells me to add something to my gemfile. What gemfile? AFAIK gemfiles are related to Ruby. Further work/investigation required.
+#### Why is Coveralls badge showing less than 100%?
+I simply don't know why. Coveralls itself shows 100%. Running gcov/lcov/genhtml locally shows 100% although minunit.h shows only 45% due to some issue with nested #ifdef statements. The value shown by the Coveralls badge on this page varies depending on which client I browse the page from. Something, somewhere is being cached I guess.
